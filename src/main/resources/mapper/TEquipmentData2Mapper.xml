@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.environment.mypuls.mapper.TEquipmentData2Mapper" >
+
+
+
+  <sql id="Base_Column_List" >
+    v_equipment_name, p001, p002, p003, p004, p005, p006, p007, p008, p009, p010, p011, 
+    p012, p013, p014, p015, dtm_create
+  </sql>
+
+  <!--查询设备,用最新的创建数分组设备-->
+  <select id="selectEquipmentData" resultType="com.environment.mypuls.entity.TEquipmentData2" parameterType="map">
+
+     select t.`v_equipment_name`, dtm_create,
+  p001, p002, p003, p004,w.`v_wind_direct_name` p005name, p006, p007, p008, p009, p010, p011,
+    p012, p013, p014, p015
+  from t_equipment_data t
+  left join `t_wind_direct_dic` w on w.`i_wind_direct_id`=t.`p005`
+ group by t.`v_equipment_name`
+
+  </select>
+
+
+  <!--查询设备,用最新的创建数分组设备-->
+  <select id="selectSEquipmentData" resultType="com.environment.mypuls.entity.TEquipmentData2" parameterType="map">
+    select t.`v_equipment_name`,
+    p001, p002, p003, p004,w.`v_wind_direct_name` p005name, p006, p007, p008, p009, p010, p011,
+    p012, p013, p014, p015,dtm_create
+    from t_equipment_data t
+    left join `t_wind_direct_dic` w on w.`i_wind_direct_id`=t.`p005`
+  where t.`dtm_create` BETWEEN  #{start} AND #{end}
+  order by t.`dtm_create` desc
+  </select>
+
+
+</mapper>

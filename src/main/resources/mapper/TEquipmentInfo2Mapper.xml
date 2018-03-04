@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.environment.mypuls.mapper.TEquipmentInfo2Mapper" >
+  <!--查询设备, 设备-->
+  <select id="getTEquipmentInfo" resultType="com.environment.mypuls.entity.TEquipmentInfo2" parameterType="map">
+    SELECT   t.i_equipment_id,t.v_equipment_name,t.n_latitude,t.n_latitude_bd,t.n_longitude,t.n_longitude_bd,
+	t.v_address,t.v_company,t.v_phone,t2.p001,t2.p002,t2.p003,t2.p004,t2.p005,t2.p006,
+    t2.p007,t2.p008,t2.p009,t2.p010,t2.p011,t2.p012,t2.p013,t2.p014,t2.p015, 
+    date_format(t2.dtm_create,'%Y-%m-%d %H:%i:%S') dtm_create
+    ,t3.v_wind_direct_name p005name
+	FROM t_equipment_info2 t 
+	INNER JOIN t_user_equipment_relation t1 
+	  ON t1.i_equipment_id = t.i_equipment_id 
+	LEFT JOIN t_equipment_data2 t2 
+	  ON t.v_equipment_name = t2.v_equipment_name 
+	LEFT JOIN t_wind_direct_dic t3 
+	  ON t3.i_wind_direct_id = t2.p005 
+	  WHERE 1 = 1 
+    <if test="v_equipment_name != null" >
+      and t.v_equipment_name=#{v_equipment_name}
+    </if>
+    <if test="i_user_id != null" >
+      and t1.i_user_id=#{i_user_id}
+    </if>
+    ORDER BY t.v_equipment_name
+  </select>
+</mapper>
