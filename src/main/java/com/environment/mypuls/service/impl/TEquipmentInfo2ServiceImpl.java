@@ -18,6 +18,16 @@ public class TEquipmentInfo2ServiceImpl extends ServiceImpl<TEquipmentInfo2Mappe
 											implements ITEquipmentInfo2Service {
     @Override
     public List<TEquipmentInfo2> getTEquipmentInfo(Map<String,Object> map) {
-        return baseMapper.getTEquipmentInfo(map);
+        return baseMapper.getTEquipmentInfo2(map);
     }
+
+	@Override
+	public void updateTEquipmentInfo2(Map<String, Object> map) {
+		 baseMapper.updateTEquipmentInfo2(map);
+	}
+
+	@Override
+	public void updateTEquipmentInfo(Map<String, Object> map) {
+		 baseMapper.updateTEquipmentInfo(map);
+	}
 }

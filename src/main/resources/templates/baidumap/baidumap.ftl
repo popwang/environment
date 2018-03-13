@@ -26,14 +26,15 @@
         div.warpper > div.legend-color > p.item-title { width: 100%; height: 30px; line-height: 30px; text-align: center; font-size: 14px; color: rgb(0,0,0); }
         div.warpper > div.legend-color > p.item-row { width: 60px; height: 20px; line-height: 20px; display: block; float: left; }
         div.warpper > div.legend-color > p.item-row > span.color { width: 60px; height: 20px; line-height: 20px; display: block; float: left;color: rgb(0,0,0);text-align:center; }
-        /*div.warpper > div.legend-color > p.item-row > span.level { width: 20px; height: 20px; line-height: 20px; display: block; float: left; text-align: center; font-size: 10px; color: rgb(0,0,0); }*/
         div.warpper > div.data-container { width: 280px; height: auto; position: fixed; left: 0px; top: 50px; background-color: rgb(255,255,255); border: 2px solid #808080; }
+        div.warpper > div.data-container2 { width: 280px; height: 350px; position: fixed; right: 0px; top: 50px; background-color: rgb(255,255,255); border: 2px solid #808080; }
         div.warpper > div.data-container > div.close-icon { width: 25px; height: 25px; line-height: 25px; text-align: center; position: absolute; top: 2px; right: 2px; color: rgb(0,0,0); font-size: 16px; cursor: pointer; }
         div.warpper > div.data-container > div.close-icon:hover { font-weight: bold; }
         div.warpper > div.data-container > div.top-lay { width: 100%; height: 100px; }
         div.warpper > div.data-container > div.top-lay > div.item-row-aqi { width: 100%; height: 120px; padding-top: 10px; }
         div.warpper > div.data-container > div.top-lay > div.item-row-aqi > div.item-row-txt-aqi { width: 120px; height: 120px; margin: 0px auto 0px auto; box-sizing: border-box; border-radius: 60px; border: 10px solid rgb(126,0,35); line-height: 100px; text-align: center; font-size: 40px; font-weight: bold; }
         div.warpper > div.data-container > div.top-lay > div.item-row-name { width: 100%; height: 40px; line-height: 40px; text-align: center; font-weight: bold; }
+        div.warpper > div.data-container2 > div.top-lay > div.item-row-name { width: 100%; height: 40px; line-height: 40px; text-align: center; font-weight: bold; }
         div.warpper > div.data-container > div.top-lay > div.item-row { width: 100%; height: 25px; line-height: 25px; text-align: center; font-size: 12px; }
         div.warpper > div.data-container > div.bottom-lay { width: 100%; height: auto; }
         div.warpper > div.data-container > div.bottom-lay > div.item-row { width: 100%; height: 30px; line-height: 30px; border: 1px solid #808080; border-width: 0px 0px 1px 0px; box-sizing: border-box; }
@@ -46,7 +47,6 @@
         .BMapLabel span { background: #84BFE2; padding: 2px; }
         .anchorBL, .anchorTL { display: none; }
         .BMapLabel { padding: 0px; }
-        /*background-color: #84bfe2;*/
         .marker-tips { width: auto; height: 20px; line-height: 20px; font-size: 14px; border: none; cursor: pointer; border-radius: 4px; display: block; background-color: #FFFFFF; }
     </style>
 </head>
@@ -91,8 +91,6 @@
         <img  src="img/gis/close.jpg" style="z-index:999;width: 25px; height: 25px; line-height: 25px; text-align: center;
          position: absolute; top: 2px; right: 2px; color: rgb(111,111,110);
           font-size: 16px; cursor: pointer;" onclick="$('div.warpper > div.data-container').hide()"></img>
-
-
         <div class="top-lay">
             <div class="item-row-name item-row-txt-name"></div>
             <div class="item-row item-row-txt-primary"></div>
@@ -109,6 +107,16 @@
             <div class="item-row"><span class="item-row-title">湿度</span><span id="itemp007" class="item-row-txt item-row-txt-co"></span><span class="item-row-unit">RH%</span></div>
             <div class="item-row"><span class="item-row-title">噪音</span><span id="itemp008" class="item-row-txt item-row-txt-o3"></span><span class="item-row-unit">分贝</span></div>
         </div>
+    </div>
+    
+    <div class="data-container2" style="display: none;">
+        <img  src="img/gis/close.jpg" style="z-index:999;width: 25px; height: 25px; line-height: 25px; text-align: center;
+         position: absolute; top: 2px; right: 2px; color: rgb(111,111,110);
+          font-size: 16px; cursor: pointer;" onclick="$('div.warpper > div.data-container2').hide()"></img>
+        <div class="top-lay">
+            <div class="item-row-name item-row-txt-name2">视频监控</div>
+        </div>
+        
     </div>
 </div>
 
@@ -236,6 +244,7 @@
                var addComp = rs.addressComponents;
                var addvar=addComp.province + "" + addComp.city + "" + addComp.district + "" + addComp.street + "" + addComp.streetNumber;
                setInfoData(p.objdate,addvar);
+               openVidioWin(p.objdate,addvar);
             });
        });
        map.addOverlay(marker);
@@ -281,7 +290,9 @@
             return { index: 6, level: "Ⅵ", color: "rgb(126,0,35)", desc: "严重污染" };
         }
     }
-        function setInfoData(obj,addvar) {
+    
+    //打开数据详情窗口
+    function setInfoData(obj,addvar) {
             $("div.data-container").show();
             $(".item-row-txt-name").text(addvar);
             $(".item-row-txt-primary").text("污染物级别监控指标：PM2.5");
@@ -300,10 +311,17 @@
             $("#itemp008").text(obj.p008);
             $("#itemp009").text(obj.p009);
 
-
             $("div.warpper > div.data-container > div.top-lay > div.item-row-aqi > div.item-row-txt-aqi").css("border-color", getAirLevel_PM25(obj.p002).color);
             $("div.warpper > div.data-container").css("border-color", getAirLevel_PM25(obj.p002).color);
             $("div.warpper > div.data-container > div.close-icon").css("color", getAirLevel_PM25(obj.p002).color);
+    }
+    //打开视频窗口
+    function openVidioWin(obj,addvar) {
+            $("div.data-container2").show();
+
+            $("div.warpper > div.data-container2 > div.top-lay > div.item-row-aqi > div.item-row-txt-aqi").css("border-color", getAirLevel_PM25(obj.p002).color);
+            $("div.warpper > div.data-container2").css("border-color", getAirLevel_PM25(obj.p002).color);
+            $("div.warpper > div.data-container2 > div.close-icon").css("color", getAirLevel_PM25(obj.p002).color);
     }
 
 function  locationMap(){

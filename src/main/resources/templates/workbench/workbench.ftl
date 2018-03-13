@@ -24,93 +24,113 @@
                             </button>
                             <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
                         </div>
-                        <!-- /btn-group -->
                     </div>
                 </td>
                 <td >
-                    <input class="lf-btn blue-btn btn-primary" type="button" id="dingshibtn" value="定时刷新开" onclick="dingshikai(this)" />
-                        <a class="lf-btn blue-btn btn-primary" onclick="rygjMap()" >马上刷新</a>
-
+                    <input class="lf-btn blue-btn btn-primary" type="button" id="dingshibtn" value="定时刷新开" onclick="timerOn(this)" />
+                        <a class="lf-btn blue-btn btn-primary" onclick="refreshNow()" >马上刷新</a>
                 </td>
             </tr>
         </table>
     </form>
     <div class="col-md-6 column">
+       <div id="lidtmCreate"> <h4 style="align-content: center">实时数据</h4></div>
+       <table class="table table-striped table-bordered table-condensed">
+       		<tr><td>数据时间：</td><td id="litime"></td> <td>PM2.5：</td><td id="lip002"></td></tr>
+       		<tr><td>PM10：</td><td id="lip003"></td> <td>PM100：</td><td id="lip009"></td></tr>
+       		<tr><td>温度：</td><td id="lip006"></td> <td>湿度：</td><td id="lip007"></td></tr>
+       		<tr><td>风向：</td><td id="lip005"></td> <td>风速：</td><td id="lip011"></td></tr>
+       		<tr><td>噪声：</td><td id="lip008"></td> <td>气压：</td><td id="lip010"></td></tr>
+       </table>
+    </div>
+    <div class="col-md-6 column">
+    	<div id="projectInfo" class="form-inline"><h4 style="align-content: center">工程信息</h4></div>
+    	<table class="table table-striped table-bordered table-condensed">
+       		<tr><td>项目地址：</td><td id="address"></td></tr>
+       		<tr><td>公司名称：</td><td id="company"></td></tr>
+       		<tr><td>联系电话：</td><td id="phone"></td></tr>
+       </table>
+       <div style="float:right;"><span><button class="btn btn-info" onclick="modifyProjectInfo();">修改</button></span></div>
+    </div>
+    <div class="col-md-12 column">
         <div id="main" style="width: 100%;height:400px;"></div>
     </div>
-    <div class="col-md-3 column">
-        <div id="ymain1" style="width: 100%;height:400px;"></div>
+    <div class="col-md-12 column">
+        <div id="ymain1" style="width: 100%;height:200px;"></div>
     </div>
-    <div class="col-md-6 column">
-        <dl class="dl-horizontal">
-            <dt> <h4>工程信息</h4></dt>
-            <dd> </dd>
-             <dt>项目地址
-            </dt>
-            <dd id="addr"> </dd>
-            <dt>公司名称</dt>
-            <dd id="vCompany">
-            </dd>
-            <dt>联系电话</dt>
-            <dd id="vPhone"></dd>
-        </dl>
+    
+    <div class="modify-win" style="display:none;width: 300px; height:auto; position: fixed; margin:auto;left:0px;right:0px;background-color: #f0f0f0">
+        <img  src="img/gis/close.jpg" style="z-index:999;width: 25px; height: 25px; line-height: 25px; text-align: center;
+         position: absolute; top: 2px; right: 2px; color: rgb(111,111,110);
+          font-size: 16px; cursor: pointer;" onclick="hideModifyWin();"></img>
+          <div class="item-row-name item-row-txt-name"><h4 style="align-content: center">录入工程信息</h4></div>
+        <form class="well">
+	        <label>项目地址:</label>  <input id="v_address" type="text" class="span3" >
+	        <label>公司名称:</label>  <input id="v_company" type="text" class="span3" >
+	        <label>联系电话:</label>  <input id="v_phone" type="text" class="span3" >
+	        <input type="button" value="保存" class="btn" style="position:relative;right:-200px;" onclick="saveProjectInfo()" />
+        </form>
     </div>
-    <div class="col-md-6 column">
-       <div id="lidtmCreate"> <h4 style="align-content: center">实时数据</h4></div>
-        <ul class="list-inline" style="font-size: 15px; ">
-            <li id="litime">数据时间:</li>
-            <li id="lip002">PM2.5:</li>
-            <li id="lip003">PM10</li>
-            <li id="lip009">PM100:</li>
-            <li id="lip006">温度:</li>
-            <li id="lip007">湿度:</li>
-            <li id="lip005">风向:</li>
-            <li id="lip0011">风速:</li>
-            <li id="lip008">噪声:</li>
-            <li id="lip010">气压:</li>
-        </ul>
-    </div>
+    
 </div>
 </div>
-<#--</div>-->
-<#--<div class="filtrate-wrapper" >-->
-    <#--<div class="container-fluid">-->
-        <#--<div class="row-fluid">-->
-            <#---->
-            <#--<div class="span12">-->
-                <#--<div style="align-content: center;width: 300px" ><h3 style="align-content: center">最大污染设备</h3></div>-->
-                <#--<div class="row-fluid">-->
-
-                    <#--<div class="span4">-->
-                        <#--<div id="ymain1" style="height:250px;"></div>-->
-                    <#--</div>-->
-                    <#--<div class="span4">-->
-                        <#--<div id="ymain2" style="height:250px;"></div>-->
-                    <#--</div>-->
-                    <#--<div class="span4">-->
-                        <#--<div id="ymain3" style="height:250px;"></div>-->
-                    <#--</div>-->
-                <#--</div>-->
-            <#--</div>-->
-        <#--</div>-->
-    <#--</div>-->
-<#--</div>-->
-
-<#--<div class="filtrate-wrapper" >-->
-<#--<div class="row-fluid">-->
-    <#--<div class="span6">-->
-        <#--<div id="bing1" style="width: 100%;height:400px;"></div>-->
-    <#--</div>-->
-    <#--<div class="span6">-->
-        <#--<div id="bing2" style="width: 100%;height:600px;"></div>-->
-    <#--</div>-->
-<#--</div>-->
-<#--</div>-->
 </body>
 <#include "/public_js.ftl" >
 <script src="js/plugins/echarts/echarts.min.js"></script>
 <script type="text/javascript">
-function rygjMap() {
+
+//保存工程信息
+function saveProjectInfo(){
+	var eid=$("#equipment_id").val();
+	var v_address = $("#v_address").val();
+	var v_company = $("#v_company").val();
+	var v_phone = $("#v_phone").val();
+	if(!eid){
+		alert("请选择一个设备号！");
+		return;
+	}
+	$.ajax({
+        type:'post',
+        url:'Equipment_info2/updateEquipmentinfo2.htm',
+        data:{
+        	eid:eid,
+        	v_address:v_address,
+        	v_company:v_company,
+        	v_phone:v_phone
+        },
+        cache:false,
+        async:true,
+        dataType:'json',
+        success:function(data){
+            if( data.msg =="true" )
+            {
+            	$("#address").html(v_address);
+                $("#company").html(v_company);
+                $("#phone").html(v_phone);
+                //清空输入项
+                $("#v_address").val("");
+            	$("#v_company").val("");
+            	$("#v_phone").val("");
+            }
+            $(".modify-win").css("display","none");
+        },
+        error:function(e){
+        	$(".modify-win").css("display","none");
+            alert("异常错误"+e.message);
+        }
+    });
+}
+//关闭工程信息修改窗口
+function hideModifyWin(){
+	$(".modify-win").css("display","none");
+}
+//修改工程信息
+function modifyProjectInfo(){
+	$(".modify-win").css("display","block");
+}
+
+//立刻刷新数据
+function refreshNow() {
     var eid=$("#equipment_id").val();
     $.ajax({
         type:'post',
@@ -139,19 +159,19 @@ function rygjMap() {
                 myChartfun(objdata,datezu,data25zu,data10zu,data100zu)
                 ymainfun(objdata)
 
-                $("#litime").html("数据时间:"+(objdata.dtmCreate==null?"空数据":objdata.dtmCreate));
-                $("#lip002").html("PM2.5值:"+(objdata.p002==null?"空数据":objdata.p002));
-                $("#lip003").html("PM10值:"+(objdata.p003==null?"空数据":objdata.p003));
-                $("#lip009").html("PM100值:"+(objdata.p009==null?"空数据":objdata.p009));
-                $("#lip006").html("温度值:"+(objdata.p006==null?"空数据":objdata.p006));
-                $("#lip007").html("湿度值:"+(objdata.p007==null?"空数据":objdata.p007));
-                $("#lip005").html("风向值:"+(objdata.p005name==null?"空数据":objdata.p005name));
-                $("#lip011").html("风速值:"+(objdata.p011==null?"空数据":objdata.p011));
-                $("#lip008").html("噪声值:"+(objdata.p008==null?"空数据":objdata.p008));
-                $("#lip010").html("气压值:"+(objdata.p0010==null?"空数据":objdata.p010));
-                $("#addr").html(objdata.vAddress==''?"空数据":objdata.vAddress);
-                $("#vCompany").html(objdata.vCompany==''?"空数据":objdata.vCompany);
-                $("#vPhone").html(objdata.vPhone==''?"空数据":objdata.vPhone);
+                $("#litime").html((objdata.dtmCreate==null?"空数据":objdata.dtmCreate));
+                $("#lip002").html((objdata.p002==null?"空数据":objdata.p002));
+                $("#lip003").html((objdata.p003==null?"空数据":objdata.p003));
+                $("#lip009").html((objdata.p009==null?"空数据":objdata.p009));
+                $("#lip006").html((objdata.p006==null?"空数据":objdata.p006));
+                $("#lip007").html((objdata.p007==null?"空数据":objdata.p007));
+                $("#lip005").html((objdata.p005name==null?"空数据":objdata.p005name));
+                $("#lip011").html((objdata.p011==null?"空数据":objdata.p011));
+                $("#lip008").html((objdata.p008==null?"空数据":objdata.p008));
+                $("#lip010").html((objdata.p0010==null?"空数据":objdata.p010));
+                $("#address").html(objdata.vAddress==''?"空数据":objdata.vAddress);
+                $("#company").html(objdata.vCompany==''?"空数据":objdata.vCompany);
+                $("#phone").html(objdata.vPhone==''?"空数据":objdata.vPhone);
             }else{
                 alert(data.msg);
             }
@@ -160,8 +180,6 @@ function rygjMap() {
             alert("异常错误"+e.message);
         }
     });
-
-
 }
     $(function ($) {
         $("#equipment_id").bsSuggest({
@@ -181,7 +199,7 @@ function rygjMap() {
                 }else{
                     //进入就查询一下
                    $("#equipment_id").val(json.list[0].vEquipmentName);
-                    rygjMap();
+                   refreshNow();
                 }
                 return json;
             }
@@ -284,8 +302,6 @@ function rygjMap() {
 
         // 使用刚指定的配置项和数据显示图表。
         myChart2.setOption(option);
-
-
 //仪表1
         var  optiony1 = {
             tooltip : {
@@ -322,7 +338,6 @@ function rygjMap() {
 
     });
 function ymainfun(objdate){
-
 //仪表1
     var  optiony1 = {
         tooltip : {
@@ -361,7 +376,6 @@ function myChartfun(objdate,datezu,data25zu,data10zu,data100zu) {
     // 基于准备好的dom，初始化柱状图echarts实例
     var myChart2 = echarts.init(document.getElementById('main'));
     myChart2.clear();
-
     option = {
         title : {
             text: '设备环境指标数据图'
@@ -373,7 +387,6 @@ function myChartfun(objdate,datezu,data25zu,data10zu,data100zu) {
         legend: {
             data:['PM2.5','PM10','PM100']
         },
-
         tooltip : {//鼠标悬浮弹窗提示
             /*  trigger: 'axis' */
             trigger : 'item',
@@ -387,7 +400,6 @@ function myChartfun(objdate,datezu,data25zu,data10zu,data100zu) {
             borderWidth: 2,
             padding: 10,    // [5, 10, 15, 20]
             formatter: function (params) {
-                // console.log(params);
                 var res = params.name;
                 res += ":    "+ datezu[params.dataIndex]+"<br>"
                 var myseries = option.series;
@@ -496,37 +508,37 @@ Date.prototype.format = function(fmt) {
 var countdown=30;
 var t1 ;
 
-function dingshiguan() {
+function timerOff() {
 
     window.clearTimeout(t1);//去掉定时器
     clearTimeout(t1)
     $("#dingshibtn").val("开启定时");
      $("#dingshibtn").unbind();
     $("#dingshibtn").bind("click",function(){
-        dingshikai()
+        timerOn()
     });
     countdown=30;
     ifbo=true;
 }
 var ifbo=true;
-function dingshikai(){
+function timerOn(){
     if(ifbo){// 设置一次事件
         ifbo=false;
         $("#dingshibtn").unbind();
         $("#dingshibtn").bind("click",function(){
-            dingshiguan();
+            timerOff();
         });
     }
     if (countdown == 0) {
         countdown = 30;
-        rygjMap();//查询
+        refreshNow();//查询
     } else {
          $("#dingshibtn").val("关闭定时(" + countdown + "秒后刷新)");
          countdown--;
     }
     clearTimeout(t1)
     t1 =window.setTimeout(function() {
-        dingshikai();
+        timerOn();
     },1000)
 
   }

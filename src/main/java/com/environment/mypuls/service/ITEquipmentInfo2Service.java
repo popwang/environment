@@ -16,4 +16,8 @@ import java.util.Map;
  */
 public interface ITEquipmentInfo2Service extends IService<TEquipmentInfo2> {
     List<TEquipmentInfo2> getTEquipmentInfo(Map<String,Object> map) ;
+    
+    void updateTEquipmentInfo2(Map<String,Object> map);
+    
+    void updateTEquipmentInfo(Map<String,Object> map);
 }

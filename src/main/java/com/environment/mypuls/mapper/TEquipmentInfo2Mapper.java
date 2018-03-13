@@ -16,5 +16,7 @@ import java.util.Map;
  */
 public interface TEquipmentInfo2Mapper extends BaseMapper<TEquipmentInfo2> {
 
-    List<TEquipmentInfo2> getTEquipmentInfo(Map<String,Object> map);
+    List<TEquipmentInfo2> getTEquipmentInfo2(Map<String,Object> map);
+    int updateTEquipmentInfo2(Map<String,Object> map);
+    int updateTEquipmentInfo(Map<String,Object> map);
 }

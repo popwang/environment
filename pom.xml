@@ -25,8 +25,6 @@
 	</properties>
 
 	<dependencies>
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
@@ -89,8 +87,6 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>1.1.0</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
@@ -107,17 +103,6 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.3</version>
 		</dependency>
-
-		<!--<dependency>-->
-		<!--<groupId>org.quartz-scheduler</groupId>-->
-		<!--<artifactId>quartz</artifactId>-->
-		<!--<version>2.2.1</version>-->
-		<!--</dependency>-->
-		<!--<dependency>-->
-		<!--<groupId>org.quartz-scheduler</groupId>-->
-		<!--<artifactId>quartz-jobs</artifactId>-->
-		<!--<version>2.2.1</version>-->
-		<!--</dependency>-->
 
 		<dependency>
 			<groupId>commons-pool</groupId>
@@ -152,8 +137,6 @@
 			<version>2.2.2</version>
 		</dependency>
 
-
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jetty</artifactId>
@@ -167,22 +150,6 @@
 			<artifactId>HikariCP</artifactId>
 			<version>2.7.2</version>
 		</dependency>
-
-
-
-
-
-
-
-
-
-
-
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.boot</groupId>-->
-			<!--<artifactId>spring-boot-devtools</artifactId>-->
-			<!--<optional>true</optional>-->
-		<!--</dependency>-->
 	</dependencies>
 
 	<build>
@@ -190,10 +157,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!--<configuration>-->
-					<!--<fork>true</fork>-->
-					<!--&lt;!&ndash;true该配置必须热部署&ndash;&gt;-->
-				<!--</configuration>-->
 			</plugin>
 		</plugins>
 		<resources>

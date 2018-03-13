@@ -45,5 +45,31 @@ public class Equipment_inif2Contrller extends BaseTOAction {
 		System.out.println(map);
 		return map;
 	}
+	
+	@RequestMapping("updateEquipmentinfo2.htm")
+	@ResponseBody
+	@ApiOperation(value = "更新设备数据")
+	public Map<String,Object> updateEquipmentinfo2(String v_equipment_name) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		String eid = this.request.getParameter("eid");
+		String v_address = this.request.getParameter("v_address");
+		String v_company = this.request.getParameter("v_company");
+		String v_phone = this.request.getParameter("v_phone");
+		
+		if (eid != null && !"".equals(eid)) {
+			map.put("eid", eid);
+			map.put("v_address", v_address);
+			map.put("v_company", v_company);
+			map.put("v_phone", v_phone);
+			itEquipmentInfoService.updateTEquipmentInfo2(map);
+			itEquipmentInfoService.updateTEquipmentInfo(map);
+			map.clear();
+			map.put("msg", "true");
+		}else{
+			map.put("msg", "false");
+		}
+		return map;
+	}
 
 }
