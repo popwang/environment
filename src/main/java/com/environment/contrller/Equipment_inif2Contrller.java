@@ -26,10 +26,10 @@ public class Equipment_inif2Contrller extends BaseTOAction {
 	@Autowired
 	ITEquipmentInfo2Service itEquipmentInfoService;
 
-	@RequestMapping("Equipmentinfo2List.htm")
+	@RequestMapping("getEquipmentinfo2.htm")
 	@ResponseBody
 	@ApiOperation(value = "返回设备数据")
-	public Map<String,Object> EquipmentinfoList(String v_equipment_name) {
+	public Map<String,Object> getEquipmentinfo2(String v_equipment_name) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		String i_user_id = this.request.getSession().getAttribute("_i_user_id").toString();
 		if (v_equipment_name != null && !"".equals(v_equipment_name)) {

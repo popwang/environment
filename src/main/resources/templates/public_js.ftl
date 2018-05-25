@@ -10,8 +10,8 @@
  	<script src="js/bootstrap-prettyfile.js" type="text/javascript" charset="utf-8"></script><!-- file样式美化 -->
     <script type="text/javascript" src="js/plugins/bootstrap-select-1.12.2/bootstrap-select.js"></script>
      <script type="text/javascript"  src="js/plugins/bootstrap-select-1.12.2/defaults-zh_CN.js"></script>
-     <script language=javascript src='js/plugins/suggest/bootstrap-suggest.js'></script>
-     <script language=javascript src='js/plugins/layer/laydate-v1.1/laydate/laydate.js'></script>
+     <script type="text/javascript" src='js/plugins/suggest/bootstrap-suggest.js'></script>
+     <script type="text/javascript" src='js/plugins/layer/laydate-v1.1/laydate/laydate.js'></script>
  	 <script type="text/javascript" src="js/plugins/zNodes/js/jquery.ztree.core.min.js"></script>
  	 <script type="text/javascript" src=" js/plugins/zNodes/js/jquery.ztree.excheck.min.js"></script><!--ztree多选js-->
 

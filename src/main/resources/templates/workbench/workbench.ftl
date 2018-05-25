@@ -134,7 +134,7 @@ function refreshNow() {
     var eid=$("#equipment_id").val();
     $.ajax({
         type:'post',
-        url:'Equipment_data/Equipment_getID.htm',
+        url:'Equipment_data/selectEquipmentData4Chart.htm',
         data:{
         	"vEquipmentName":eid,
         	"shu":10
@@ -156,22 +156,9 @@ function refreshNow() {
 	                }
                 }
                 
-                myChartfun(objdata,datezu,data25zu,data10zu,data100zu)
-                ymainfun(objdata)
-
-                $("#litime").html((objdata.dtmCreate==null?"空数据":objdata.dtmCreate));
-                $("#lip002").html((objdata.p002==null?"空数据":objdata.p002));
-                $("#lip003").html((objdata.p003==null?"空数据":objdata.p003));
-                $("#lip009").html((objdata.p009==null?"空数据":objdata.p009));
-                $("#lip006").html((objdata.p006==null?"空数据":objdata.p006));
-                $("#lip007").html((objdata.p007==null?"空数据":objdata.p007));
-                $("#lip005").html((objdata.p005name==null?"空数据":objdata.p005name));
-                $("#lip011").html((objdata.p011==null?"空数据":objdata.p011));
-                $("#lip008").html((objdata.p008==null?"空数据":objdata.p008));
-                $("#lip010").html((objdata.p0010==null?"空数据":objdata.p010));
-                $("#address").html(objdata.vAddress==''?"空数据":objdata.vAddress);
-                $("#company").html(objdata.vCompany==''?"空数据":objdata.vCompany);
-                $("#phone").html(objdata.vPhone==''?"空数据":objdata.vPhone);
+                loadBarChart(objdata,datezu,data25zu,data10zu,data100zu)
+                loadPieChart(objdata)
+                loadEquipmentInfo(objdata);
             }else{
                 alert(data.msg);
             }
@@ -181,7 +168,10 @@ function refreshNow() {
         }
     });
 }
-    $(function ($) {
+/**
+ * 页面打开时自动加载内容
+ */
+$(function ($) {
         $("#equipment_id").bsSuggest({
 //            indexId: 1,  //data.value 的第几个数据，作为input输入框的内容
 //            indexKey:1, //data.value 的第几个数据，作为input输入框的内容
@@ -191,7 +181,7 @@ function refreshNow() {
             effectiveFields: ["iEquipmentId","vEquipmentName"],
             effectiveFieldsAlias:{iEquipmentId:"设备ID",vEquipmentName: "设备名称"}, //有效字段的别名对象，用于 header 的显示
             clearable: true,
-            url:'Equipment_info2/Equipmentinfo2List.htm',
+            url:'Equipment_info2/getEquipmentinfo2.htm',
             processData: function(json){
                 json.value=json.list
                 if(json.list.length<1){
@@ -211,8 +201,6 @@ function refreshNow() {
         }).on('onUnsetSelectValue', function () {
             console.log("onUnsetSelectValue");
         });
-
-
         // 基于准备好的dom，初始化柱状图echarts实例
         var myChart2 = echarts.init(document.getElementById('main'));
         option = {
@@ -334,10 +322,11 @@ function refreshNow() {
         };
         var ymain1 = echarts.init(document.getElementById('ymain1'));
         ymain1.setOption(optiony1);
-
-
-    });
-function ymainfun(objdate){
+});
+/**
+ * 加载饼图数据
+ */
+function loadPieChart(objdate){
 //仪表1
     var  optiony1 = {
         tooltip : {
@@ -372,7 +361,28 @@ function ymainfun(objdate){
     ymain1.clear();
     ymain1.setOption(optiony1);
 }
-function myChartfun(objdate,datezu,data25zu,data10zu,data100zu) {
+/**
+ * 加载设备及工地信息
+ */
+function loadEquipmentInfo(objdata){
+	$("#litime").html((objdata.dtmCreate==null?"空数据":objdata.dtmCreate));
+    $("#lip002").html((objdata.p002==null?"空数据":objdata.p002));
+    $("#lip003").html((objdata.p003==null?"空数据":objdata.p003));
+    $("#lip009").html((objdata.p009==null?"空数据":objdata.p009));
+    $("#lip006").html((objdata.p006==null?"空数据":objdata.p006));
+    $("#lip007").html((objdata.p007==null?"空数据":objdata.p007));
+    $("#lip005").html((objdata.p005name==null?"空数据":objdata.p005name));
+    $("#lip011").html((objdata.p011==null?"空数据":objdata.p011));
+    $("#lip008").html((objdata.p008==null?"空数据":objdata.p008));
+    $("#lip010").html((objdata.p0010==null?"空数据":objdata.p010));
+    $("#address").html(objdata.vAddress==''?"空数据":objdata.vAddress);
+    $("#company").html(objdata.vCompany==''?"空数据":objdata.vCompany);
+    $("#phone").html(objdata.vPhone==''?"空数据":objdata.vPhone);
+}
+/**
+ * 加载柱图数据
+ */
+function loadBarChart(objdate,datezu,data25zu,data10zu,data100zu) {
     // 基于准备好的dom，初始化柱状图echarts实例
     var myChart2 = echarts.init(document.getElementById('main'));
     myChart2.clear();
@@ -485,6 +495,7 @@ function myChartfun(objdate,datezu,data25zu,data10zu,data100zu) {
     // 使用刚指定的配置项和数据显示图表。
     myChart2.setOption(option);
 }
+
 Date.prototype.format = function(fmt) {
     var o = {
         "M+" : this.getMonth()+1,                 //月份
@@ -507,9 +518,10 @@ Date.prototype.format = function(fmt) {
 }
 var countdown=30;
 var t1 ;
-
+/**
+ * 关闭页面自动刷新
+ */
 function timerOff() {
-
     window.clearTimeout(t1);//去掉定时器
     clearTimeout(t1)
     $("#dingshibtn").val("开启定时");
@@ -521,6 +533,9 @@ function timerOff() {
     ifbo=true;
 }
 var ifbo=true;
+/**
+ * 开启页面自动刷新
+ */
 function timerOn(){
     if(ifbo){// 设置一次事件
         ifbo=false;
@@ -540,7 +555,6 @@ function timerOn(){
     t1 =window.setTimeout(function() {
         timerOn();
     },1000)
-
   }
 </script>
 </html>

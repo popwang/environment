@@ -40,14 +40,6 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <#--<li><a class="J_menuItem" href="form_avatar.html">修改头像</a>-->
-                                <#--</li>-->
-                                <#--<li><a class="J_menuItem" href="profile.html">个人资料</a>-->
-                                <#--</li>-->
-                                <#--<li><a class="J_menuItem" href="contacts.html">联系我们</a>-->
-                                <#--</li>-->
-                                <#--<li><a class="J_menuItem" href="mailbox.html">信箱</a>-->
-                                <#--</li>-->
                                 <li class="divider"></li>
                                 <li><a href="quit.htm">安全退出</a>
                                 </li>
@@ -56,15 +48,15 @@
                         <div class="logo-element">环保
                         </div>
                     </li>
-                <li>
-                <a class="J_menuItem" href="workbench/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color:#cdd6ec;">工作台</span></a>
-                </li>
-                    <li>
-                        <a class="J_menuItem" href="baidumap/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备GIS地图</span></a>
-                    </li>
-                    <li>
-                        <a class="J_menuItem" href="eqdateselect/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备历史数据</span></a>
-                    </li>
+                  <li>
+                	  <a class="J_menuItem" href="workbench/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color:#cdd6ec;">工作台</span></a>
+                  </li>
+                  <li>
+                      <a class="J_menuItem" href="baidumap/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备GIS地图</span></a>
+                  </li>
+                  <li>
+                      <a class="J_menuItem" href="eqdateselect/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备历史数据</span></a>
+                  </li>
                 </ul>
             </div>
         </nav>
@@ -139,9 +131,7 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
         <!--右侧边栏结束-->
@@ -155,7 +145,5 @@
     <script type="text/javascript" src="js/contabs.min.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
 </body>
-
-
 <!-- Mirrored from www.zi-han.net/theme/hplus/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 20 Jan 2016 14:17:11 GMT -->
 </html>

@@ -3,10 +3,8 @@ package com.environment.mypuls.entity;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotations.TableField;
-import java.util.Date;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.environment.utils.DataUtils;
 /**
  * @author niuchen
  * @since 2017-10-27

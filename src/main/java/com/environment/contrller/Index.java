@@ -50,6 +50,7 @@ public class Index extends BaseTOAction {
 		
 		if (list.size()>0) {
 			request.getSession().setAttribute("_i_user_id", list.get(0).getiUserId());
+			request.getSession().setAttribute("sys_user_key", list.get(0));
 			map.put("msg", "ok");
 		} else {
 			map.put("msg", "error");

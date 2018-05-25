@@ -37,10 +37,10 @@ public class Equipment_dataContrller extends BaseTOAction {
 	@Autowired
 	TEquipmentDataMapper TEquipmentDataMapper;
 
-	@RequestMapping("Equipment_getID.htm")
+	@RequestMapping("selectEquipmentData4Chart.htm")
 	@ResponseBody
 	@ApiOperation(value = "返回设备数据")
-	public Map<String,Object> Equipment_getID(String vEquipmentName, Integer shu) {
+	public Map<String,Object> selectEquipmentData4Chart(String vEquipmentName, Integer shu) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		if (vEquipmentName != null && !"".equals(vEquipmentName)) {
 			map.put("v_equipment_name", vEquipmentName);
@@ -55,42 +55,38 @@ public class Equipment_dataContrller extends BaseTOAction {
 		} else {
 			map.put("objdata", telist.get(0));
 		}
-		if (shu == null || shu == 0) {
-			shu = 1;
-		}
 		List<TEquipmentData> chartlist = TEquipmentDataMapper.selectEquipmentData4Chart(map);
 		map.put("objlist", chartlist);
 		map.put("msg", "true");
 		return map;
 	}
 
-	@RequestMapping("SEquipment_dateList.htm")
+	@RequestMapping("selectEquipmentData.htm")
 	@ResponseBody
 	@ApiOperation(value = "设备历史数据 分页")
-	public Map<String,Object> SEquipment_dateList(int offset, int limit, String date,String equipmentname, HttpServletRequest request,
+	public Map<String,Object> selectEquipmentData(int offset, int limit, String date,String equipmentname, HttpServletRequest request,
 			HttpServletResponse response) {
 		System.out.println(offset + " " + limit + "  " + date);
 		Integer pageNum = (offset / limit) + 1;
-		Integer pageSize = limit;// 每也显示的苏联
+		Integer pageSize = limit;// 每页显示的数量
 		String[] datezu = date.split(" - ");
 		Map<String,Object> params = new HashMap<String,Object>();
-		params.put("start", datezu[0].replaceAll("/", "-"));
-		params.put("end", datezu[1].replaceAll("/", "-"));
+		params.put("start", datezu[0].replaceAll("/", "-")+ " 00:00:00");
+		params.put("end", datezu[1].replaceAll("/", "-")+ " 23:59:59");
 		params.put("equipmentname", equipmentname);
 		Page<?> page = PageHelper.startPage(pageNum, pageSize, true);
 
-		List<TEquipmentData> te = TEquipmentDataMapper.selectSEquipmentData(params);
+		List<TEquipmentData> te = TEquipmentDataMapper.selectEquipmentData(params);
 		PageHelper.clearPage();
-		;
 		params.clear();
 		params.put("rows", te);
 		params.put("total", page.getTotal());
 		return params;
 	}
 
-	@RequestMapping("SEquipment_dateExport.htm")
+	@RequestMapping("exportEquipmentData.htm")
 	@ApiOperation(value = "设备历史数据 导出")
-	public void SEquipment_dateExport(String date, HttpServletRequest request, HttpServletResponse response) {
+	public void exportEquipmentData(String date, HttpServletRequest request, HttpServletResponse response) {
 		CSVWriter csv = null;
 		HttpSession session = request.getSession();
 		try {
@@ -119,9 +115,9 @@ public class Equipment_dataContrller extends BaseTOAction {
 			csv.flush();
 			String[] datezu = date.split(" - ");
 			Map<String,Object> params = new HashMap<String,Object>();
-			params.put("start", datezu[0].replaceAll("/", "-"));
-			params.put("end", datezu[1].replaceAll("/", "-"));
-			List<TEquipmentData> te = TEquipmentDataMapper.selectSEquipmentData(params);
+			params.put("start", datezu[0].replaceAll("/", "-")+" 00:00:00");
+			params.put("end", datezu[1].replaceAll("/", "-")+ " 23:59:59");
+			List<TEquipmentData> te = TEquipmentDataMapper.selectEquipmentData(params);
 			int i = 0;
 			for (TEquipmentData eq : te) {
 				request.getSession().setAttribute("exportTag", i++);

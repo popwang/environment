@@ -143,7 +143,7 @@
         });
        $("#btn_export").click(function() {
            if(exportParam!=null){
-               var url="Equipment_data/SEquipment_dateExport.htm?"+exportParam;
+               var url="Equipment_data/exportEquipmentData.htm?"+exportParam;
                var url2="Equipment_data/exportTag.htm?"+exportParam;
                bsuExport(url,url2,$("#btn_export"));
            }else{
@@ -165,7 +165,7 @@
             exportParam=parseParam(queryParams);
             //查询加载表格
             $('#tb_departments').bootstrapTable('refresh', {
-                url: 'Equipment_data/SEquipment_dateList.htm',
+                url: 'Equipment_data/selectEquipmentData.htm',
                 silent: true,
                 query: queryParams
             });
@@ -173,7 +173,7 @@
         });
         
         var aj = $.ajax({
-            url: 'Equipment_info2/Equipmentinfo2List.htm',// 跳转到 action
+            url: 'Equipment_info2/getEquipmentinfo2.htm',// 跳转到 action
             data: {},
             type: 'post',
             cache: false,

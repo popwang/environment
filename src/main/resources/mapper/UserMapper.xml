@@ -6,7 +6,4 @@
 		select i_user_id,v_user_name,v_password,dtm_create,i_admin
 		from t_user_info where v_user_name=#{userName} and v_password=#{password} 
   	</select>
-  	
-  	
-  	
 </mapper>

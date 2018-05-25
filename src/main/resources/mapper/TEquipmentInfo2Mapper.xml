@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.environment.mypuls.mapper.TEquipmentInfo2Mapper" >
-  <!--查询设备, 设备-->
+  <!--查询用户权限下的设备信息,关联查询设备对应的最新一条数据-->
   <select id="getTEquipmentInfo2" resultType="com.environment.mypuls.entity.TEquipmentInfo2" parameterType="map">
     SELECT   t.i_equipment_id,t.v_equipment_name,t.n_latitude,t.n_latitude_bd,t.n_longitude,t.n_longitude_bd,
 	t.v_address,t.v_company,t.v_phone,t2.p001,t2.p002,t2.p003,t2.p004,t2.p005,t2.p006,
