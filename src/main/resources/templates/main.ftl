@@ -57,6 +57,9 @@
                   <li>
                       <a class="J_menuItem" href="eqdateselect/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备历史数据</span></a>
                   </li>
+                  <li>
+                      <a class="J_menuItem" href="baidumap/line.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备轨迹地图</span></a>
+                  </li>
                 </ul>
             </div>
         </nav>

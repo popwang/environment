@@ -146,7 +146,7 @@
         //   map.setCurrentCity("河南");          // 设置地图显示的城市 此项是必须设置的
         map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
         var aj = $.ajax({
-            url: 'Equipment_info2/Equipmentinfo2List.htm',// 跳转到 action
+            url: 'Equipment_info2/getEquipmentinfo2.htm',// 跳转到 action
             data: {},
             type: 'post',
             cache: false,
@@ -236,7 +236,7 @@
             for (var i = 0; i < markers.length; i++) {
                if (markers[i].toString() == "[object Marker]") {
                    markers[i].setAnimation(null);
-                }
+               }
            }
            p.setAnimation(BMAP_ANIMATION_BOUNCE);
            var geoc = new BMap.Geocoder();//地址转中文

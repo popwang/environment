@@ -70,6 +70,7 @@ public class Index extends BaseTOAction {
 	@ApiOperation(value = "退出返回主页")
 	public ModelAndView quit() {
 		ModelAndView mv = new ModelAndView();
+		request.getSession().removeAttribute("sys_user_key");
 		mv.setViewName("index");
 		return mv;
 	}
@@ -85,6 +86,18 @@ public class Index extends BaseTOAction {
 		mv.addAllObjects(map);
 		return mv;
 	}
+	
+	@RequestMapping("/baidumap/line.htm")
+	@ApiOperation(value = "进入地图")
+	public ModelAndView baidumapline(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/baidumap/linemap");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("basepath", this.getBasepath());
+
+		mv.addAllObjects(map);
+		return mv;
+	}
 
 	@RequestMapping("/eqdateselect/index.htm")
 	@ApiOperation(value = "进入数据查询")
@@ -93,7 +106,6 @@ public class Index extends BaseTOAction {
 		mv.setViewName("/eqdateselect/eqdateselect");
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("basepath", this.getBasepath());
-
 		mv.addAllObjects(map);
 		return mv;
 	}

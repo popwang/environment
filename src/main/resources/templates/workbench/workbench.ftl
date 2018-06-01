@@ -173,8 +173,6 @@ function refreshNow() {
  */
 $(function ($) {
         $("#equipment_id").bsSuggest({
-//            indexId: 1,  //data.value 的第几个数据，作为input输入框的内容
-//            indexKey:1, //data.value 的第几个数据，作为input输入框的内容
             idField: "iEquipmentId",
             keyField: "vEquipmentName",
             searchFields: [ "vEquipmentName"],  //有效搜索字段，
@@ -193,7 +191,6 @@ $(function ($) {
                 }
                 return json;
             }
-            // data: dataList
         }).on('onDataRequestSuccess', function (e, result) {
             console.log('从 json.data 参数中获取，不会触发 onDataRequestSuccess 事件', result);
         }).on('onSetSelectValue', function (e, keyword, data) {
