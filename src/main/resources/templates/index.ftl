@@ -9,7 +9,7 @@
             padding-top: 60px;
         }
     </style>
-    <title>系统</title>
+    <title>欢迎使用扬尘监测系统</title>
     <link href="login/bootstrap.css" rel="stylesheet">
 
     <link href="login/login-register.css" rel="stylesheet">

@@ -22,7 +22,7 @@
             <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    	<logger name="org.springframework">
+    <logger name="org.springframework">
 		<level value="info" />
 	</logger>
 	<logger name="com.ibatis">
@@ -33,7 +33,7 @@
  	<!--<appender-ref ref="logfile" /> -->
 	</logger>
 	
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </root>
