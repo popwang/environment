@@ -30,24 +30,15 @@
             </div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
-                    <li class="nav-header">
-                        <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <span class="clear">
-                                <span class="block m-t-xs"><strong class="font-bold">管理员</strong></span>
-                                <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li class="divider"></li>
-                                <li><a href="quit.htm">安全退出</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="logo-element">环保
-                        </div>
-                    </li>
+                  <li class="nav-header">
+                      <div class="dropdown profile-element">
+					                        
+                      </div>
+                  </li>
+                    
+                  <li>
+                      <a class="J_menuItem" href="baidumap/line.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备轨迹地图</span></a>
+                  </li>
                   <li>
                 	  <a class="J_menuItem" href="workbench/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color:#cdd6ec;">工作台</span></a>
                   </li>
@@ -57,9 +48,7 @@
                   <li>
                       <a class="J_menuItem" href="eqdateselect/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备历史数据</span></a>
                   </li>
-                  <li>
-                      <a class="J_menuItem" href="baidumap/line.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备轨迹地图</span></a>
-                  </li>
+                 
                 </ul>
             </div>
         </nav>
@@ -78,7 +67,7 @@
                 </button>
                 <nav class="page-tabs J_menuTabs">
                     <div class="page-tabs-content">
-                        <a href="javascript:;" class="active J_menuTab" data-id="workbench/index.htm">工作台</a>
+                        <a href="javascript:;" class="active J_menuTab" data-id="baidumap/line.htm">设备轨迹地图</a>
                     </div>
                 </nav>
                 <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
@@ -86,7 +75,7 @@
                 <a href="quit.htm" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
             </div>
             <div class="row J_mainContent" id="content-main">
-                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="workbench/index.htm" frameborder="0" data-id="workbench/index.htm" seamless></iframe>
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="baidumap/line.htm" frameborder="0" data-id="baidumap/line.htm" seamless></iframe>
             </div>
             <div class="footer">
                 <div class="pull-right">&copy; 2017</div>

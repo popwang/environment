@@ -53,13 +53,13 @@ public class EquipmentDataVo implements Serializable{
 	/**
 	 * 数据时间
 	 */
-	private String dtm_create;
+	private String dtmCreate;
 	
-	public String getDtm_create() {
-		return dtm_create;
+	public String getDtmCreate() {
+		return dtmCreate;
 	}
-	public void setDtm_create(String dtm_create) {
-		this.dtm_create = dtm_create;
+	public void setDtmCreate(String dtmCreate) {
+		this.dtmCreate = dtmCreate;
 	}
 	public String getDeviceid() {
 		return deviceid;

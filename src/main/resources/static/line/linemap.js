@@ -62,6 +62,7 @@ function addArrow(line){ //绘制标注的函数
     var linePoint=line.getPath();//线的坐标串  
     var arrowCount=linePoint.length;  
     var end = new BMap.Marker(linePoint[linePoint.length-1]);  // 创建标注  
+    addListener(end);
     map.addOverlay(end);               // 将标注添加到地图中  
     end.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画  
     var myIcon = new BMap.Icon("img/gis/stop_icon.png", new BMap.Size(11,11));
@@ -79,7 +80,8 @@ function addArrow(line){ //绘制标注的函数
                 border:"none"  
             }); 
         }
-        marker.setLabel(label);  
+        marker.setLabel(label);
+        addListener(marker);
     }  
 }  
 //创建和初始化地图函数：
@@ -92,44 +94,91 @@ function initMap(){
 
 $(function($) {
     initMap();//创建和初始化地图 
+//    initSwitchers();
 });
 
-// 编写自定义函数,创建标注
-function addMarker(obj, i) {
-	if (obj.nLatitudeBd == null || obj.nLongitudeBd == null) {
-		return;
-	}
-	var point = new BMap.Point(obj.nLongitudeBd, obj.nLatitudeBd);
-	var marker = null;
-	if (obj.p002 == 0) {
-		marker = new BMap.Marker(point, {
-			icon : Level_Icon[0]
-		});
-	} else {
-		marker = new BMap.Marker(point, {
-			icon : Level_Icon[getAirLevel_PM25(obj.p002).index]
-		});
-	}
-	marker.enableDragging();// 开启拖拽功能
-	marker.setTitle(obj.vEquipmentName);//添加标题
-	var label = new BMap.Label("",//"设备号:"+obj.vEquipmentName
-	{
-		offset : new BMap.Size(-14, -5)
-	});
-	label.setStyle({
-		border : "none"
-	});
-	marker.setLabel(label);
-	marker.objdate = obj;
+/**
+ * 初始化开关按钮
+ * @returns
+ */
+function initSwitchers(prestr) {
+	//循环初始化开关按钮
+	var machine;
+	for (var i = 1; i <= 10; i++) {
+		machine = prestr + i;
 
-	marker.addEventListener('mouseover', function(e) {// 鼠标移动上图标标识上// 变颜色
-		var p = e.target;
-		p.setTop(true);
-	});
-	marker.addEventListener('mouseout', function(e) {// 鼠标移动上图标标识上// 变颜色
-		var p = e.target;
-		p.setTop(false);
-	});
+		$(machine).bootstrapSwitch({
+			onText : '开',
+			offText : '关',
+			onColor : 'primary',
+			offColor : 'danger',
+			size : 'small',
+			onSwitchChange : function(event, state) {
+				
+			},
+			onInit : function(event, state) {
+				
+			}
+		});
+		if(i%2==0){
+			$(machine).bootstrapSwitch("state",true,false);
+		}else{
+			$(machine).bootstrapSwitch("state",false,false);
+		}
+	}
+}
+
+function openSetTimeWin(){
+	$("#setTimeWinId").css("display","block");
+	initSwitchers("#motor");
+}
+
+function closeSetTimeWin(){
+	$("#setTimeWinId").css("display","none");
+}
+
+function saveSetTimeData() {
+	var result = "", machine = "#motor";
+	for (var i = 1; i <= 10; i++) {
+		if ($(machine + i).bootstrapSwitch("state")) {
+			result += "1";
+		} else {
+			result += "0";
+		}
+	}
+	alert(result);
+	closeSetTimeWin();
+}
+
+function openOffonWin(){
+	$("#offOnWinId").css("display","block");
+	initSwitchers("#machine");
+}
+
+function closeOffonWin(){
+	$("#offOnWinId").css("display","none");
+}
+
+/**
+ * 保存开关信息
+ * @returns
+ */
+function saveOffonData() {
+	closeOffonWin();
+	var result = "", machine = "#machine";
+	for (var i = 1; i <= 10; i++) {
+		if ($(machine + i).bootstrapSwitch("state")) {
+			result += "1";
+		} else {
+			result += "0";
+		}
+	}
+	alert(result);
+	closeOffonWin();
+}
+
+// 编写自定义函数,创建标注
+function addListener(marker) {
 	marker.addEventListener('click', function(e) {// 图标单击
 		var p = e.target;
 		var markers = map.getOverlays();
@@ -146,8 +195,16 @@ function addMarker(obj, i) {
 					+ addComp.district + "" + addComp.street + ""
 					+ addComp.streetNumber;
 			setInfoData(p.objdate, addvar);
-			openVidioWin(p.objdate, addvar);
 		});
 	});
 	map.addOverlay(marker);
+}
+
+//打开数据详情窗口
+function setInfoData(obj, addvar) {
+//	$("#wp-state-panel").css("display","block");
+	$("div.data-container").show();
+	$(".item-row-txt-name").text(addvar);
+	$(".item-row-txt-primary").text("雾炮工作状态：远程模式，有水");
+	$(".item-row-txt-time").text("数据时间：2018-06-04 17:05:23");
 }

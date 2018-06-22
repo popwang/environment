@@ -9,7 +9,7 @@
     w.`v_wind_direct_name` windd,
     p006 temp, p007 humi, p008 noise, p009 pm100, p010 pre,
     p014 lati, p015 logi,
-    date_format(dtm_create,'%Y-%m-%d %H:%i:%S') dtm_create
+    date_format(dtm_create,'%Y-%m-%d %H:%i:%S') dtmCreate
     from t_equipment_data2 t
     left join `t_wind_direct_dic` w 
     	on w.`i_wind_direct_id`=t.`p005`
