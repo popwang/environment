@@ -71,13 +71,6 @@
             <div class="item-row"><span class="item-row-title">噪音</span><span id="itemp008" class="item-row-txt item-row-txt-o3"></span><span class="item-row-unit">分贝</span></div>
         </div>
     </div>
-    
-    <div class="data-container2" style="display: none;">
-        <img  src="img/gis/close.jpg" class="map-img" onclick="$('div.warpper > div.data-container2').hide()"></img>
-        <div class="top-lay">
-            <div class="item-row-name item-row-txt-name2">视频监控</div>
-        </div>
-    </div>
 </div>
 </body>
 <#include "/public_js.ftl" >

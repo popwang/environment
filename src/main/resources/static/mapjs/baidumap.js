@@ -115,7 +115,7 @@ var map = new BMap.Map("allmap");    // 创建Map实例
                var addComp = rs.addressComponents;
                var addvar=addComp.province + "" + addComp.city + "" + addComp.district + "" + addComp.street + "" + addComp.streetNumber;
                setInfoData(p.objdate,addvar);
-               openVidioWin(p.objdate,addvar);
+//               openVidioWin(p.objdate,addvar);
             });
        });
        map.addOverlay(marker);
@@ -187,13 +187,13 @@ var map = new BMap.Map("allmap");    // 创建Map实例
             $("div.warpper > div.data-container > div.close-icon").css("color", getAirLevel_PM25(obj.p002).color);
     }
     //打开视频窗口
-    function openVidioWin(obj,addvar) {
-            $("div.data-container2").show();
-
-            $("div.warpper > div.data-container2 > div.top-lay > div.item-row-aqi > div.item-row-txt-aqi").css("border-color", getAirLevel_PM25(obj.p002).color);
-            $("div.warpper > div.data-container2").css("border-color", getAirLevel_PM25(obj.p002).color);
-            $("div.warpper > div.data-container2 > div.close-icon").css("color", getAirLevel_PM25(obj.p002).color);
-    }
+//    function openVidioWin(obj,addvar) {
+//            $("div.data-container2").show();
+//
+//            $("div.warpper > div.data-container2 > div.top-lay > div.item-row-aqi > div.item-row-txt-aqi").css("border-color", getAirLevel_PM25(obj.p002).color);
+//            $("div.warpper > div.data-container2").css("border-color", getAirLevel_PM25(obj.p002).color);
+//            $("div.warpper > div.data-container2 > div.close-icon").css("color", getAirLevel_PM25(obj.p002).color);
+//    }
 
 function  locationMap(){
     var eid=$("#equipment_id").val();
