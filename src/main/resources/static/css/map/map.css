@@ -71,7 +71,7 @@ div.warpper>div.data-container {
 
 div.warpper>div.data-container2 {
 	width: 450px;
-	height: 250px;
+	height: auto;
 	position: fixed;
 	left: 320px;
 	top: 50px;
@@ -98,7 +98,7 @@ div.warpper>div.data-container>div.close-icon:hover {
 
 div.warpper>div.data-container>div.top-lay {
 	width: 100%;
-	height: 100px;
+	height: 115px;
 }
 
 div.warpper>div.data-container>div.top-lay>div.item-row-aqi {

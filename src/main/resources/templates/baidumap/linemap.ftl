@@ -46,6 +46,7 @@
           font-size: 16px; cursor: pointer;" onclick="$('div.warpper > div.data-container').hide()"></img>
         <div class="top-lay">
             <div class="item-row-name item-row-txt-name"></div>
+            <div class="item-row item-row-txt-equipment"></div>
             <div class="item-row item-row-txt-primary"></div>
             <div class="item-row item-row-txt-time"></div>
         </div>
@@ -59,17 +60,17 @@
 	        </form>
         </div>
         <div class="bottom-lay">
-            <div class="item-row"><span class="item-row-title">电机编号</span><span id="itemp001" class="item-row-txt item-row-txt-pm25">传感器状态</span><span class="item-row-unit">单位</span></div>
-            <div class="item-row"><span class="item-row-title">1<sub>#</sub></span><span id="itemp002" class="item-row-txt item-row-txt-pm10">700</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">2<sub>#</sub></span><span id="itemp003" class="item-row-txt item-row-txt-so2">750</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">3<sub>#</sub></span><span id="itemp009" class="item-row-txt item-row-txt-so2">800</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">4<sub>#</sub></span><span id="itemp004" class="item-row-txt item-row-txt-no2">890</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">5<sub>#</sub></span><span id="itemp005" class="item-row-txt item-row-txt-co">900</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">6<sub>#</sub></span><span id="itemp006" class="item-row-txt item-row-txt-co">670</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">7<sub>#</sub></span><span id="itemp007" class="item-row-txt item-row-txt-co">560</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">8<sub>#</sub></span><span id="itemp008" class="item-row-txt item-row-txt-o3">768</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">9<sub>#</sub></span><span id="itemp008" class="item-row-txt item-row-txt-o3">800</span><span class="item-row-unit">r/m</span></div>
-            <div class="item-row"><span class="item-row-title">10<sub>#</sub></span><span id="itemp008" class="item-row-txt item-row-txt-o3">999</span><span class="item-row-unit">r/m</span></div>
+            <div class="item-row"><span class="item-row-title">电机编号</span><span id="itemp001" class="item-row-txt item-row-txt-pm25">转速(r/m)</span><span class="item-row-unit">温度(℃)</span></div>
+            <div class="item-row"><span class="item-row-title">1<sub>#</sub></span><span id="itemp002" class="item-row-txt item-row-txt-pm10">700</span><span class="item-row-unit">50</span></div>
+            <div class="item-row"><span class="item-row-title">2<sub>#</sub></span><span id="itemp003" class="item-row-txt item-row-txt-so2">750</span><span class="item-row-unit">60</span></div>
+            <div class="item-row"><span class="item-row-title">3<sub>#</sub></span><span id="itemp009" class="item-row-txt item-row-txt-so2">800</span><span class="item-row-unit">80</span></div>
+            <div class="item-row"><span class="item-row-title">4<sub>#</sub></span><span id="itemp004" class="item-row-txt item-row-txt-no2">890</span><span class="item-row-unit">49</span></div>
+            <div class="item-row"><span class="item-row-title">5<sub>#</sub></span><span id="itemp005" class="item-row-txt item-row-txt-co">900</span><span class="item-row-unit">48</span></div>
+            <div class="item-row"><span class="item-row-title">6<sub>#</sub></span><span id="itemp006" class="item-row-txt item-row-txt-co">670</span><span class="item-row-unit">69</span></div>
+            <div class="item-row"><span class="item-row-title">7<sub>#</sub></span><span id="itemp007" class="item-row-txt item-row-txt-co">560</span><span class="item-row-unit">59</span></div>
+            <div class="item-row"><span class="item-row-title">8<sub>#</sub></span><span id="itemp008" class="item-row-txt item-row-txt-o3">768</span><span class="item-row-unit">50</span></div>
+            <div class="item-row"><span class="item-row-title">9<sub>#</sub></span><span id="itemp008" class="item-row-txt item-row-txt-o3">800</span><span class="item-row-unit">69</span></div>
+            <div class="item-row"><span class="item-row-title">10<sub>#</sub></span><span id="itemp008" class="item-row-txt item-row-txt-o3">999</span><span class="item-row-unit">40</span></div>
         </div>
     </div>
     <div class="panel panel-success data-container2" id="offOnWinId" style="display:none;">
@@ -77,10 +78,10 @@
     		开关面板
     	</div>
     	<div class="panel-body">
-			<form class="form-inline">
+			<form class="form-inline" id="offOnFormId">
 				<div class="form-group">
 					<label class="control-label" for="machine1">1#电机</label>
-					<div class="controls">
+					<div class="switch">
 						<input id="machine1" type="checkbox" />
 					</div>
 				</div>
@@ -152,71 +153,128 @@
 	
 	<div class="panel panel-info data-container2" id="setTimeWinId" style="display:none;">
     	<div class="panel-heading">
-    		定时设置面板
+    		<strong>定时设置面板</strong>
     	</div>
     	<div class="panel-body">
 			<form class="form-inline">
-				<div class="form-group">
-					<label class="control-label" for="motor1">1#电机</label>
-					<div class="controls">
-						<input id="motor1" type="checkbox" />
+				<fieldset>
+					<legend class="text-primary"><small>电机开关设置</small></legend>
+					<div class="form-group">
+						<label class="control-label" for="motor1">1#电机</label>
+						<div class="controls">
+							<input id="motor1" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="motor2">2#电机</label>
-					<div class="controls">
-						<input id="motor2" type="checkbox" />
+					<div class="form-group">
+						<label class="control-label" for="motor2">2#电机</label>
+						<div class="controls">
+							<input id="motor2" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="motor3">3#电机</label>
-					<div class="controls">
-						<input id="motor3" type="checkbox" />
+					<div class="form-group">
+						<label class="control-label" for="motor3">3#电机</label>
+						<div class="controls">
+							<input id="motor3" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="motor4">4#电机</label>
-					<div class="controls">
-						<input id="motor4" type="checkbox" />
+					<div class="form-group">
+						<label class="control-label" for="motor4">4#电机</label>
+						<div class="controls">
+							<input id="motor4" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="motor5">5#电机</label>
-					<div class="controls">
-						<input id="motor5" type="checkbox" />
+					<div class="form-group">
+						<label class="control-label" for="motor5">5#电机</label>
+						<div class="controls">
+							<input id="motor5" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<br>
-				<div class="form-group">
-					<label class="control-label" for="motor6">6#电机</label>
-					<div class="controls">
-						<input id="motor6" type="checkbox" />
+					<br>
+					<div class="form-group">
+						<label class="control-label" for="motor6">6#电机</label>
+						<div class="controls">
+							<input id="motor6" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="motor7">7#电机</label>
-					<div class="controls">
-						<input id="motor7" type="checkbox" />
+					<div class="form-group">
+						<label class="control-label" for="motor7">7#电机</label>
+						<div class="controls">
+							<input id="motor7" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="motor8">8#电机</label>
-					<div class="controls">
-						<input id="motor8" type="checkbox" />
+					<div class="form-group">
+						<label class="control-label" for="motor8">8#电机</label>
+						<div class="controls">
+							<input id="motor8" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="motor9">9#电机</label>
-					<div class="controls">
-						<input id="motor9" type="checkbox" />
+					<div class="form-group">
+						<label class="control-label" for="motor9">9#电机</label>
+						<div class="controls">
+							<input id="motor9" type="checkbox" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label" for="motor10">10#电机</label>
-					<div class="controls">
-						<input id="motor10" type="checkbox" />
+					<div class="form-group">
+						<label class="control-label" for="motor10">10#电机</label>
+						<div class="controls">
+							<input id="motor10" type="checkbox" />
+						</div>
 					</div>
-				</div>
+				</fieldset>
+				<fieldset>
+					<legend class="text-primary"><small>定时设置</small></legend>
+					<div class="form-group">
+						<label for="timeswitch">定时设置开关</label>
+						<select id="timeswitch">
+								<option value="1">开</option>
+								<option value="0">关</option>
+						</select>
+					</div>
+					<br>
+					<div class="form-group">
+						<label for="timestart">开始时间</label>
+						<select id="timestart">
+								<option value="08">8</option>
+								<option value="09">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+						</select>
+					</div>
+					<br>
+					<div class="form-group">
+						<label for="timeend">结束时间</label>
+						<select id="timeend">
+								<option value="08">8</option>
+								<option value="09">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+						</select>
+					</div>
+					<br>
+					<div class="form-group">
+						<label for="timeduration">间隔时间</label>
+						<select id="timeduration">
+								<option value="5">5</option>
+								<option value="10">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+						</select>
+					</div>
+					<br>
+					<div class="form-group">
+						<label for="timerun">运行时间</label>
+						<select id="timerun">
+								<option value="5">5</option>
+								<option value="10">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="30">30</option>
+						</select>
+					</div>
+				</fieldset>
 			</form>
 		</div>
 		<div class="panel-footer">

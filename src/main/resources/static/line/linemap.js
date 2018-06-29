@@ -61,15 +61,10 @@ function addPolyline(){
 function addArrow(line){ //绘制标注的函数  
     var linePoint=line.getPath();//线的坐标串  
     var arrowCount=linePoint.length;  
-    var end = new BMap.Marker(linePoint[linePoint.length-1]);  // 创建标注  
-    addListener(end);
-    map.addOverlay(end);               // 将标注添加到地图中  
-    end.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画  
-    var myIcon = new BMap.Icon("img/gis/stop_icon.png", new BMap.Size(11,11));
+    var myIcon = new BMap.Icon("img/gis/stop_icon.png", new BMap.Size(11,11));//圆点
     for(var i =0;i<arrowCount;i++){ //在拐点处添加标注  
         var marker = new BMap.Marker(linePoint[i],{icon:myIcon});  // 创建标注  
-        map.addOverlay(marker);              // 将标注添加到地图中  
-        if(i==arrowCount-1){
+        if(i==arrowCount-1){//最后一个点加上当前位置的标签
         	var label = new BMap.Label("当前位置",{offset:new BMap.Size(20,-10)});  
             label.setStyle({  
                 color : "blue",  
@@ -78,11 +73,18 @@ function addArrow(line){ //绘制标注的函数
                 lineHeight : "15px",  
                 backgroundColor:"rgba(255, 255, 255, 0.8) none repeat scroll 0 0 !important",//设置背景色透明  
                 border:"none"  
-            }); 
+            });
+            marker.setLabel(label);
         }
-        marker.setLabel(label);
-        addListener(marker);
-    }  
+        map.addOverlay(marker);// 将标注添加到地图中  
+    }
+    /**
+     * 创建红点标注
+     */
+    var end = new BMap.Marker(linePoint[linePoint.length-1]);
+    end.setTitle("00000888");
+    addListener(end);
+    map.addOverlay(end);
 }  
 //创建和初始化地图函数：
 function initMap(){  
@@ -94,7 +96,7 @@ function initMap(){
 
 $(function($) {
     initMap();//创建和初始化地图 
-//    initSwitchers();
+//    initSwitchers("#machine");
 });
 
 /**
@@ -146,7 +148,6 @@ function saveSetTimeData() {
 			result += "0";
 		}
 	}
-	alert(result);
 	closeSetTimeWin();
 }
 
@@ -158,13 +159,11 @@ function openOffonWin(){
 function closeOffonWin(){
 	$("#offOnWinId").css("display","none");
 }
-
 /**
  * 保存开关信息
  * @returns
  */
 function saveOffonData() {
-	closeOffonWin();
 	var result = "", machine = "#machine";
 	for (var i = 1; i <= 10; i++) {
 		if ($(machine + i).bootstrapSwitch("state")) {
@@ -174,6 +173,10 @@ function saveOffonData() {
 		}
 	}
 	alert(result);
+	$.ajax({
+		url:"/wp/command",
+		
+	});
 	closeOffonWin();
 }
 
@@ -197,7 +200,6 @@ function addListener(marker) {
 			setInfoData(p.objdate, addvar);
 		});
 	});
-	map.addOverlay(marker);
 }
 
 //打开数据详情窗口
@@ -205,6 +207,7 @@ function setInfoData(obj, addvar) {
 //	$("#wp-state-panel").css("display","block");
 	$("div.data-container").show();
 	$(".item-row-txt-name").text(addvar);
+	$(".item-row-txt-equipment").text("设备编号：00000888");
 	$(".item-row-txt-primary").text("雾炮工作状态：远程模式，有水");
 	$(".item-row-txt-time").text("数据时间：2018-06-04 17:05:23");
 }

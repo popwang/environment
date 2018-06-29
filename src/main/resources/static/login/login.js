@@ -1,7 +1,6 @@
 ﻿$(function() {
 	var app = angular.module('myApp', [ 'toaster', 'ngAnimate' ]);
-	app.controller(
-					'myCtrl',
+	app.controller('myCtrl',
 					function($scope, $rootScope, $http, toaster) {
 						$scope.roles = [ {
 							roleid : 1,
@@ -39,120 +38,10 @@
 									$('#loginModal').modal('show');
 								}, 230);
 							})
-
 						}
 						var location = (window.location + '').split('/');
 						var basePath = location[0] + '//' + location[2] + '/'
 								+ location[3];
-
-						// 注册请求
-						$scope.registerClick = function() {
-							if ($scope.juese == 2
-									&& ($scope.bumen == undefined || $scope.bumen == null)) {
-								toaster.pop({
-									type : 'error',
-									title : '提示',
-									body : "部门经理必须选择一个部门",
-									timeout : 2000
-								});
-							} else if ($scope.juese == 3
-									&& ($scope.xiangmu == undefined || $scope.xiangmu == null)) {
-								toaster.pop({
-									type : 'error',
-									title : '提示',
-									body : "项目经理必须选择一个项目",
-									timeout : 2000
-								});
-							} else if ($scope.juese == 4
-									&& ($scope.xiangmu == undefined || $scope.xiangmu == null)
-									&& ($scope.bumen == undefined || $scope.bumen == null)) {
-								toaster.pop({
-									type : 'error',
-									title : '提示',
-									body : "员工必须选择部门或者项目",
-									timeout : 2000
-								});
-							} else if ($("#loginnameRe").val().trim() == null
-									|| $("#loginnameRe").val().trim() == "") {
-								toaster.pop({
-									type : 'error',
-									title : '提示',
-									body : "请输入用户名",
-									timeout : 2000
-								});
-							} else if ($("#passwordRe").val().trim() == null
-									|| $("#passwordRe").val().trim() == "") {
-								toaster.pop({
-									type : 'error',
-									title : '提示',
-									body : "请输入密码",
-									timeout : 2000
-								});
-							} else if ($("#usernameRe").val().trim() == null
-									|| $("#usernameRe").val().trim() == "") {
-								toaster.pop({
-									type : 'error',
-									title : '提示',
-									body : "请输入姓名",
-									timeout : 2000
-								});
-							} else if (!($("#password_confirmationRe").val()
-									.trim() == $("#passwordRe").val().trim())) {
-								toaster.pop({
-									type : 'error',
-									title : '提示',
-									body : "两次密码输入不一致",
-									timeout : 2000
-								});
-							} else {
-								$http(
-										{
-											method : 'post',
-											url : basePath
-													+ '/user/registerUser.do',
-											headers : {
-												'Content-Type' : 'application/x-www-form-urlencoded'
-											},
-											params : {
-												juese : $scope.juese,
-												xiangmu : $scope.xiangmu,
-												bumen : $scope.bumen,
-												login : encodeURI($(
-														"#loginnameRe").val()
-														.trim()),
-												pass : encodeURI($(
-														"#passwordRe").val()
-														.trim()),
-												name : encodeURI($(
-														"#usernameRe").val()
-														.trim())
-											}, // 传递数据作为字符串，从前台传到后台
-										}).success(
-										function(data) {// 这里的data，就是后台传递过来的数据
-											if (data.msg == "error") {
-												toaster.pop({
-													type : 'error',
-													title : '提示',
-													body : "注册用户失败",
-													timeout : 2000
-												});
-											} else {
-												window.location = basePath
-														+ "/user/userMain.do";
-											}
-										})
-										.error(
-												function(data, status, headers,
-														config) {
-													toaster.pop({
-														type : 'error',
-														title : '提示',
-														body : "注册用户失败",
-														timeout : 2000
-													});
-												});
-							}
-						};
 						
 						$(document).keypress(function(e) {  
 						   // 回车键事件  
@@ -217,30 +106,12 @@
 	// 加载cookie,自动获取上次登录的用户密码
 	usernameCookie = getCookie("username");
 	passwordCookie = getCookie("password");
-	/*
-	 * username = document.getElementById("username"); password =
-	 * document.getElementById("password");
-	 */
 	if (usernameCookie != null && usernameCookie != "") {
-		// username.value = usernameCookie;
-		// $("#username").attr("value", usernameCookie);
 		$("#username").val(usernameCookie);
 	}
 	if (passwordCookie != null && passwordCookie != "") {
-		// password.value = passwordCookie;
 		$("#password").val(passwordCookie);
 	}
-	// 加载当前时间
-	getDate();
-	// 显示作者信息
-	$("#title").click(function() {
-		// $("#h4").toggle(1000, null);
-		$(".auth").slideToggle(500);
-	});
-	// 底部渐隐效果
-	$("#bottom").click(function() {
-		$("#bottom").fadeOut(1000).fadeIn(1000);
-	});
 	// 日期颜色切换及滑动等效果
 	$("#time").click(function() {
 		x = document.getElementById("time");
@@ -255,12 +126,6 @@
 	});
 	$("#form").submit(function() {
 		return checkLogin();
-	});
-	$("#time").mouseover(function() {
-		$("#time").text("質保部测试系统");
-	});
-	$("#time").mouseout(function() {
-		$("#time").text("谢谢使用");
 	});
 	// 登陆按钮效果
 	$("#login_btn").mouseup(function() {
@@ -315,62 +180,7 @@
 		}, 100)
 	}
 });
-function getDate() {
-	// 获取系统时间。
-	$("#bottom").css("width", $(window).width());
-	var dateTime = new Date();
-	var yy = dateTime.getFullYear();
-	var dd = dateTime.getDate();
-	var mo = dateTime.getMonth() + 1;
-	var hh = dateTime.getHours();
-	var mm = dateTime.getMinutes();
-	var ss = dateTime.getSeconds();
-	var week = dateTime.getDay();
-	switch (week) {
-	case 1:
-		week = "星期一";
-		break;
-	case 2:
-		week = "星期二";
-		break;
-	case 3:
-		week = "星期三";
-		break;
-	case 4:
-		week = "星期四";
-		break;
-	case 5:
-		week = "星期五";
-		break;
-	case 6:
-		week = "星期六";
-		break;
-	case 7:
-		week = "星期日";
-		break;
-	}
-	// 分秒时间是一位数字，在数字前补0。
-	yy = extra(yy);
-	dd = extra(dd);
-	mo = extra(mo);
-	mm = extra(mm);
-	ss = extra(ss);
-	// 将时间显示到ID为time的位置，时间格式形如：19:18:02
-	$("#time").text(
-			yy + "年" + mo + "月" + dd + "日" + "  " + hh + ":" + mm + ":" + ss
-					+ "  " + week);
-	// 每隔1000ms执行方法systemTime()。
-	setTimeout("getDate()", 1000);
-}
-// 补位函数。
-function extra(x) {
-	// 如果传入数字小于10，数字前补一位0。
-	if (x < 10) {
-		return "0" + x;
-	} else {
-		return x;
-	}
-}
+
 // 获取cookie信息
 function getCookie(name) {
 	cookie = $.cookie(name);
@@ -423,7 +233,6 @@ function validate_required(field) {
 		return false;
 	} else {
 		return true
-
 	}
 }
 // 格式无误后保存cookie信息

@@ -56,18 +56,24 @@
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateX
 
 
+
+
 (-10
 px
+
+
 );
-
-
 }
 20%,
 40%,
@@ -77,18 +83,24 @@ px
 -webkit-transform
 
 
+
+
 :
 
+
  
+
 
 translateX
 
 
+
+
 (10
 px
+
+
 );
-
-
 }
 }
 @
@@ -105,18 +117,24 @@ px
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateX
 
 
+
+
 (-10
 px
+
+
 );
-
-
 }
 20%,
 40%,
@@ -126,18 +144,24 @@ px
 -moz-transform
 
 
+
+
 :
 
+
  
+
 
 translateX
 
 
+
+
 (10
 px
+
+
 );
-
-
 }
 }
 @
@@ -154,18 +178,24 @@ px
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateX
 
 
+
+
 (-10
 px
+
+
 );
-
-
 }
 20%,
 40%,
@@ -175,18 +205,24 @@ px
 -o-transform
 
 
+
+
 :
 
+
  
+
 
 translateX
 
 
+
+
 (10
 px
+
+
 );
-
-
 }
 }
 @
@@ -203,18 +239,24 @@ keyframes shake { 0%, 100% {
 transform
 
 
+
+
 :
 
+
  
+
 
 translateX
 
 
+
+
 (-10
 px
+
+
 );
-
-
 }
 20%,
 40%,
@@ -224,18 +266,24 @@ px
 transform
 
 
+
+
 :
 
+
  
+
 
 translateX
 
 
+
+
 (10
 px
+
+
 );
-
-
 }
 }
 .shake {
@@ -347,7 +395,7 @@ px
 	width: 100%;
 }
 
-.login .btn-login,.registerBox .btn-register {
+.login .btn-login, .registerBox .btn-register {
 	background-color: #00BBFF;
 	border-color: #00BBFF;
 	border-width: 0;
@@ -359,7 +407,7 @@ px
 	width: 100%;
 }
 
-.login .btn-login:hover,.registerBox .btn-register:hover {
+.login .btn-login:hover, .registerBox .btn-register:hover {
 	background-color: #00A4E4;
 	color: #FFFFFF;
 }
@@ -381,7 +429,7 @@ px
 	color: #FFFFFF;
 }
 
-.login .box .form input[type="text"],.login .box .form input[type="password"]
+.login .box .form input[type="text"], .login .box .form input[type="password"]
 	{
 	border-radius: 3px;
 	border: none;
@@ -399,7 +447,7 @@ px
 	}
 }
 
-.big-login,.big-register {
+.big-login, .big-register {
 	background-color: #00bbff;
 	color: #FFFFFF;
 	border-radius: 7px;
@@ -434,8 +482,8 @@ body {
 	min-height: 768px;
 }
 
-html,body,div,p,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,form,input,select,button,textarea,iframe,table,th,td
-	{
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form,
+	input, select, button, textarea, iframe, table, th, td {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
@@ -446,7 +494,7 @@ body {
 	position: relative;
 }
 
-body,button,input,select,textarea {
+body, button, input, select, textarea {
 	font: .9em "Î¢ÈíÑÅºÚ";
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -465,7 +513,7 @@ a {
 	padding: 0;
 }
 
-ul,ol,a {
+ul, ol, a {
 	list-style: none;
 }
 
@@ -525,14 +573,14 @@ a:active {
 	z-index: 0;
 	width: 100%;
 	height: 100%;
-	text-align:center;
+	text-align: center;
 }
 
 .bg-canvas iframe {
 	border: 0px;
 	width: 1024px;
 	height: 682px;
-	margin:0 auto;
+	margin: 0 auto;
 }
 
 .cont {
