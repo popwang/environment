@@ -52,11 +52,11 @@
         </div>
         <div class="body-lay">
 	        <form class="form-inline">
-	    		<button type="button" class="btn btn-primary">读数</button>
+	    		<button type="button" class="btn btn-primary" onclick="handlerCommonButton(1)">读数</button>
 	    		<button type="button" class="btn btn-success" onclick="openOffonWin();">开关</button>
 	    		<button type="button" class="btn btn-info" onclick="openSetTimeWin();">定时</button>
-	    		<button type="button" class="btn btn-warning">锁定</button>
-	    		<button type="button" class="btn btn-danger">解锁</button>
+	    		<button type="button" class="btn btn-warning" onclick="handlerCommonButton(2)">锁定</button>
+	    		<button type="button" class="btn btn-danger" onclick="handlerCommonButton(3)">解锁</button>
 	        </form>
         </div>
         <div class="bottom-lay">
@@ -291,4 +291,5 @@
 <script type="text/javascript" src="new/js/bootstrap-switch.min.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=WzaT655XL9yMmiPr324iGaQHTqmah2cv"></script>
 <script type="text/javascript" src="line/linemap.js"></script>
+<script type="text/javascript" src="line/linefunc.js"></script>
 </html>

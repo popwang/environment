@@ -83,10 +83,15 @@ function addArrow(line){ //绘制标注的函数
      */
     var end = new BMap.Marker(linePoint[linePoint.length-1]);
     end.setTitle("00000888");
+    var obj = {};
+    obj.name = "00000888";
+    obj.status= "11";
+    obj.dtm_create = "2018-06-04 17:05:23";
+    end.obj = obj;
     addListener(end);
     map.addOverlay(end);
 }  
-//创建和初始化地图函数：
+//创建和初始化地图函数
 function initMap(){  
     createMap();//创建地图  
     setMapEvent();//设置地图事件  
@@ -96,89 +101,7 @@ function initMap(){
 
 $(function($) {
     initMap();//创建和初始化地图 
-//    initSwitchers("#machine");
 });
-
-/**
- * 初始化开关按钮
- * @returns
- */
-function initSwitchers(prestr) {
-	//循环初始化开关按钮
-	var machine;
-	for (var i = 1; i <= 10; i++) {
-		machine = prestr + i;
-
-		$(machine).bootstrapSwitch({
-			onText : '开',
-			offText : '关',
-			onColor : 'primary',
-			offColor : 'danger',
-			size : 'small',
-			onSwitchChange : function(event, state) {
-				
-			},
-			onInit : function(event, state) {
-				
-			}
-		});
-		if(i%2==0){
-			$(machine).bootstrapSwitch("state",true,false);
-		}else{
-			$(machine).bootstrapSwitch("state",false,false);
-		}
-	}
-}
-
-function openSetTimeWin(){
-	$("#setTimeWinId").css("display","block");
-	initSwitchers("#motor");
-}
-
-function closeSetTimeWin(){
-	$("#setTimeWinId").css("display","none");
-}
-
-function saveSetTimeData() {
-	var result = "", machine = "#motor";
-	for (var i = 1; i <= 10; i++) {
-		if ($(machine + i).bootstrapSwitch("state")) {
-			result += "1";
-		} else {
-			result += "0";
-		}
-	}
-	closeSetTimeWin();
-}
-
-function openOffonWin(){
-	$("#offOnWinId").css("display","block");
-	initSwitchers("#machine");
-}
-
-function closeOffonWin(){
-	$("#offOnWinId").css("display","none");
-}
-/**
- * 保存开关信息
- * @returns
- */
-function saveOffonData() {
-	var result = "", machine = "#machine";
-	for (var i = 1; i <= 10; i++) {
-		if ($(machine + i).bootstrapSwitch("state")) {
-			result += "1";
-		} else {
-			result += "0";
-		}
-	}
-	alert(result);
-	$.ajax({
-		url:"/wp/command",
-		
-	});
-	closeOffonWin();
-}
 
 // 编写自定义函数,创建标注
 function addListener(marker) {
@@ -197,17 +120,32 @@ function addListener(marker) {
 			var addvar = addComp.province + "" + addComp.city + ""
 					+ addComp.district + "" + addComp.street + ""
 					+ addComp.streetNumber;
-			setInfoData(p.objdate, addvar);
+			setInfoData(p.obj, addvar);
 		});
 	});
 }
 
 //打开数据详情窗口
 function setInfoData(obj, addvar) {
-//	$("#wp-state-panel").css("display","block");
 	$("div.data-container").show();
 	$(".item-row-txt-name").text(addvar);
-	$(".item-row-txt-equipment").text("设备编号：00000888");
-	$(".item-row-txt-primary").text("雾炮工作状态：远程模式，有水");
-	$(".item-row-txt-time").text("数据时间：2018-06-04 17:05:23");
+	$(".item-row-txt-equipment").text("设备编号："+obj.name);
+	$(".item-row-txt-primary").text("雾炮工作状态："+toStr(obj.status));
+	$(".item-row-txt-time").text("数据时间："+obj.dtm_create);
+}
+function toStr(status){
+	var tmp = "";
+	switch(parseInt(status.charAt(0))){
+		case 1 : tmp = "手动模式";break;
+		case 2 : tmp = "远程模式";break;
+		case 3 : tmp = "定时模式";break;
+		default:
+	}
+	switch(parseInt(status.charAt(1))){
+		case 1 : tmp += ",有水";break;
+		case 2 : tmp += ",缺水";break;
+		case 3 : tmp += ",缺相";break;
+		default:
+	}
+	return tmp;
 }

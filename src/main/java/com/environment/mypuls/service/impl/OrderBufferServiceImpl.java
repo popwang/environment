@@ -15,6 +15,6 @@ public class OrderBufferServiceImpl implements IOrderBufferService {
 	
 	@Override
 	public void insertOrderBuffer(TWpOrderBuffer order) {
-		orderBufferMapper.insertOrderBuffer(order);
+		orderBufferMapper.insert(order);
 	}
 }

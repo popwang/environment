@@ -1,11 +1,19 @@
 package com.environment.mypuls.entity;
 
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+@TableName("t_wp_order_buffer")
 public class TWpOrderBuffer {
-	
+	@TableField("i_id")
 	private Integer iId;
+	@TableField("v_equipment_name")
 	private String vEquipmentName;
+	@TableField("v_order_content")
 	private String vOrderContent;
+	@TableField("i_send_flag")
 	private Integer iSendFlag;
+	@TableField("dtm_create")
 	private String dtmCreate;
 	
 	public Integer getiId() {
