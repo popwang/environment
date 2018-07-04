@@ -19,7 +19,12 @@ import com.baomidou.mybatisplus.annotations.TableName;
 public class TWpData2 extends Model<TWpData2> {
 
     private static final long serialVersionUID = 1L;
-
+    
+    /**
+     * 设备ID
+     */
+	@TableField(exist=false)
+	private Integer iEquipmentId;
     /**
      * 设备名称
      */
@@ -54,7 +59,7 @@ public class TWpData2 extends Model<TWpData2> {
      * 数据插入时间
      */
 	@TableField("dtm_create")
-	private Date dtmCreate;
+	private String dtmCreate;
     /**
      * 工作模式，1手动模式，2远程模式，3定时模式，4其他
      */
@@ -115,11 +120,19 @@ public class TWpData2 extends Model<TWpData2> {
 		this.dLatitude = dLatitude;
 	}
 
-	public Date getDtmCreate() {
+	public Integer getiEquipmentId() {
+		return iEquipmentId;
+	}
+
+	public void setiEquipmentId(Integer iEquipmentId) {
+		this.iEquipmentId = iEquipmentId;
+	}
+
+	public String getDtmCreate() {
 		return dtmCreate;
 	}
 
-	public void setDtmCreate(Date dtmCreate) {
+	public void setDtmCreate(String dtmCreate) {
 		this.dtmCreate = dtmCreate;
 	}
 
@@ -156,7 +169,6 @@ public class TWpData2 extends Model<TWpData2> {
 
 	@Override
 	protected Serializable pkVal() {
-		// TODO Auto-generated method stub
 		return vEquipmentName;
 	}
 }

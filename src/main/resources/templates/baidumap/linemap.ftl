@@ -33,7 +33,7 @@
                     </div>
                 </td>
                 <td>
-                    <a class="lf-btn blue-btn btn-primary" onclick="locationMap()" >查询</a>
+                    <a class="lf-btn blue-btn btn-primary" onclick="clickMarker()" >查询</a>
                 </td>
             </tr>
         </table>

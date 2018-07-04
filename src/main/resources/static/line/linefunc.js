@@ -1,9 +1,31 @@
+
+function initState(prestr){
+	var name = getEquipmentName();
+	$.ajax({
+		url:"/wp/state",
+		cache:false,
+		async:true,
+		dataType:'json',
+		type:'post',
+		data:{
+			name:name
+		},
+		success:function(result,status,jqXHR){
+			var status = result.status;
+//			alert(status);
+			initSwitchers(prestr,status);
+		},
+		error:function(result,status,jqXHR){
+			layer.msg('内部错误，请联系管理员!');
+		}
+	});
+}
+
 /**
  * 初始化开关按钮
  * @returns
  */
-function initSwitchers(prestr) {
-	var status = "1111100000";//后续使用ajax请求获取最新状态
+function initSwitchers(prestr,status) {
 	//循环初始化开关按钮
 	var machine;
 	for (var i = 1; i <= 10; i++) {
@@ -34,7 +56,7 @@ function initSwitchers(prestr) {
  */
 function openSetTimeWin(){
 	$("#setTimeWinId").css("display","block");
-	initSwitchers("#motor");
+	initState("#motor");
 }
 
 function closeSetTimeWin(){
@@ -61,7 +83,7 @@ function saveSetTimeData() {
  */
 function openOffonWin(){
 	$("#offOnWinId").css("display","block");
-	initSwitchers("#machine");
+	initState("#machine");
 }
 
 function closeOffonWin(){
@@ -142,9 +164,4 @@ function handlerCommonButton(state){
 			layer.msg('内部错误，请联系管理员!');
 		}
 	});
-}
-
-function getEquipmentName(){
-	var name = $(".item-row-txt-equipment").text();
-	return name.replace("设备编号：","");
 }
