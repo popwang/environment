@@ -1,6 +1,5 @@
 <script src="js/jquery.min.js?v=2.1.4"></script>
 <script src="js/jquery-ui-1.10.4.min.js?v=2.1.4"></script>
-<!--      <script src="js/plugins/jquery-form/jquery.form.min.js"></script> -->
 <script src="js/plugins/jquery-form/jquery.form.js"></script>
 <script src="js/bootstrap.min.js?v=3.3.5"></script>
 <script src="js/plugins/bootstrap-table/bootstrap-table.min.js"></script>
@@ -29,7 +28,6 @@
 	src=" js/plugins/zNodes/js/jquery.ztree.excheck.min.js"></script>
 <!--ztree多选js-->
 
-
 <script src="js/plugins/bootstrap-daterangepicker-master/moment.js"
 	type="text/javascript" charset="utf-8"></script>
 <!-- 日期区间 -->
@@ -37,8 +35,6 @@
 	src="js/plugins/bootstrap-daterangepicker-master/daterangepicker.js"
 	type="text/javascript" charset="utf-8"></script>
 <!-- 日期区间 -->
-
-<!-- 验证是否有session -->
 
 <!-- 用于根据bootstrap table列数据的展示,截取, -->
 <script type="text/javascript"> 

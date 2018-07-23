@@ -43,15 +43,15 @@ var POINT_CSS = {
 	opacity : 0.6
 };
 //标注线数组  
-var plPoints = [ {
-	weight : 2,
-	color : "blue",
-	opacity : 0.6,
-	points : [ "113.610005|34.762504", "113.609933|34.761673",
-			"113.60979|34.759479", "113.609861|34.757225",
-			"113.609933|34.75414", "113.610005|34.753429",
-			"113.613383|34.755327", "113.616114|34.753488" ]
-} ];
+//var plPoints = [ {
+//	weight : 2,
+//	color : "blue",
+//	opacity : 0.6,
+//	points : [ "113.610005|34.762504", "113.609933|34.761673",
+//			"113.60979|34.759479", "113.609861|34.757225",
+//			"113.609933|34.75414", "113.610005|34.753429",
+//			"113.613383|34.755327", "113.616114|34.753488" ]
+//} ];
 
 //在拐角处添加标注
 function addArrow(line) { //绘制标注的函数  
@@ -68,8 +68,7 @@ function addArrow(line) { //绘制标注的函数
 			var label = new BMap.Label("当前位置", {
 				offset : new BMap.Size(20, -10)
 			});
-			label
-					.setStyle({
+			label.setStyle({
 						color : "blue",
 						fontSize : "10px",
 						height : "15px",
@@ -163,6 +162,35 @@ function setInfoData(obj, addvar) {
 	$(".item-row-txt-primary").text(
 			"雾炮工作状态：" + toStr(obj.iWorkModel + "" + obj.iWorkStatus));
 	$(".item-row-txt-time").text("数据时间：" + obj.dtmCreate);
+	setData(obj);
+}
+/**
+ * 设置设备读数
+ * @param obj
+ * @returns
+ */
+function setData(obj){
+	$("#m01").text(parseInt(obj.vMotorSpeed.substring(0,2)));
+	$("#m02").text(parseInt(obj.vMotorSpeed.substring(2,4)));
+	$("#m03").text(parseInt(obj.vMotorSpeed.substring(4,6)));
+	$("#m04").text(parseInt(obj.vMotorSpeed.substring(6,8)));
+	$("#m05").text(parseInt(obj.vMotorSpeed.substring(8,10)));
+	$("#m06").text(parseInt(obj.vMotorSpeed.substring(10,12)));
+	$("#m07").text(parseInt(obj.vMotorSpeed.substring(12,14)));
+	$("#m08").text(parseInt(obj.vMotorSpeed.substring(14,16)));
+	$("#m09").text(parseInt(obj.vMotorSpeed.substring(16,18)));
+	$("#m10").text(parseInt(obj.vMotorSpeed.substring(18)));
+	
+	$("#t01").text(parseInt(obj.vMotorTemp.substring(0,2)));
+	$("#t02").text(parseInt(obj.vMotorTemp.substring(2,4)));
+	$("#t03").text(parseInt(obj.vMotorTemp.substring(4,6)));
+	$("#t04").text(parseInt(obj.vMotorTemp.substring(6,8)));
+	$("#t05").text(parseInt(obj.vMotorTemp.substring(8,10)));
+	$("#t06").text(parseInt(obj.vMotorTemp.substring(10,12)));
+	$("#t07").text(parseInt(obj.vMotorTemp.substring(12,14)));
+	$("#t08").text(parseInt(obj.vMotorTemp.substring(14,16)));
+	$("#t09").text(parseInt(obj.vMotorTemp.substring(16,18)));
+	$("#t10").text(parseInt(obj.vMotorTemp.substring(18)));
 }
 /**
  * 转换状态字符串
@@ -272,7 +300,12 @@ function initSelectComponent() {
 				}
 			});
 }
-
+/**
+ * 将设备在地图上以标注(marker)形式展示
+ * @param obj
+ * @param i
+ * @returns
+ */
 function addMarker(obj, i) {
 	if (obj.dLongitude == null || obj.dLatitude == null) {
 		return;
@@ -314,12 +347,19 @@ function addMarker(obj, i) {
 	});
 	map.addOverlay(marker);
 }
-
+/**
+ * 从下拉列表中选择设备后，触发事件：
+ * 先将现有图中的折现和标注清除掉，再加载当前点击的设备信息
+ * @returns
+ */
 function clickMarker() {
 	var eid = $("#equipment_id").val();
 	var markers = map.getOverlays();
 	var ifbo = false;
 	for (var i = 0; i < markers.length; i++) {
+		if (markers[i].toString() == "[object Polyline]") {
+			map.removeOverlay(markers[i]);
+		}
 		if (markers[i].toString() == "[object Marker]") {
 			if (markers[i].getTitle().indexOf(":") > -1) {
 				map.removeOverlay(markers[i]);

@@ -1,79 +1,131 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <base href=" ${basepath}">
-    <meta name="viewport" content="width=device-width" />
-    <title>工作台</title>
-
-<#include "/public_css.ftl" >
-    <link rel="stylesheet" href="css/model/rygj.css">
+<base href=" ${basepath}">
+<meta name="viewport" content="width=device-width" />
+<title>工作台</title> <#include "/public_css.ftl" >
+<link rel="stylesheet" href="css/model/rygj.css">
 </head>
-<body style="background-color:#fafafa">
-<div class="filtrate-wrapper" >
-<div class="row clearfix">
-    <form role="form" class="select-box border-bottom-style"  style="align:left;">
-        <table id="data_1">
-            <tr>
-                <td class="control-label" >设备名称：</td>
-                <td class="input-group date">
-                    <div class="input-group" style="width:300px">
-                        <input type="text" class="form-control" id="equipment_id">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-white dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
-                        </div>
-                    </div>
-                </td>
-                <td >
-                    <input class="lf-btn blue-btn btn-primary" type="button" id="dingshibtn" value="定时刷新开" onclick="timerOn(this)" />
-                        <a class="lf-btn blue-btn btn-primary" onclick="refreshNow()" >马上刷新</a>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <div class="col-md-6 column">
-       <div id="lidtmCreate"> <h4 style="align-content: center">实时数据</h4></div>
-       <table class="table table-striped table-bordered table-condensed">
-       		<tr><td>数据时间：</td><td id="litime"></td> <td>PM2.5：</td><td id="lip002"></td></tr>
-       		<tr><td>PM10：</td><td id="lip003"></td> <td>PM100：</td><td id="lip009"></td></tr>
-       		<tr><td>温度：</td><td id="lip006"></td> <td>湿度：</td><td id="lip007"></td></tr>
-       		<tr><td>风向：</td><td id="lip005"></td> <td>风速：</td><td id="lip011"></td></tr>
-       		<tr><td>噪声：</td><td id="lip008"></td> <td>气压：</td><td id="lip010"></td></tr>
-       </table>
-    </div>
-    <div class="col-md-6 column">
-    	<div id="projectInfo" class="form-inline"><h4 style="align-content: center">工程信息</h4></div>
-    	<table class="table table-striped table-bordered table-condensed">
-       		<tr><td>项目地址：</td><td id="address"></td></tr>
-       		<tr><td>公司名称：</td><td id="company"></td></tr>
-       		<tr><td>联系电话：</td><td id="phone"></td></tr>
-       </table>
-       <div style="float:right;"><span><button class="btn btn-info" onclick="modifyProjectInfo();">修改</button></span></div>
-    </div>
-    <div class="col-md-12 column">
-        <div id="main" style="width: 100%;height:400px;"></div>
-    </div>
-    <div class="col-md-12 column">
-        <div id="ymain1" style="width: 100%;height:200px;"></div>
-    </div>
-    
-    <div class="modify-win" style="display:none;width: 300px; height:auto; position: fixed; margin:auto;left:0px;right:0px;background-color: #f0f0f0">
-        <img  src="img/gis/close.jpg" style="z-index:999;width: 25px; height: 25px; line-height: 25px; text-align: center;
-         position: absolute; top: 2px; right: 2px; color: rgb(111,111,110);
-          font-size: 16px; cursor: pointer;" onclick="hideModifyWin();"></img>
-          <div class="item-row-name item-row-txt-name"><h4 style="align-content: center">录入工程信息</h4></div>
-        <form class="well">
-	        <label>项目地址:</label>  <input id="v_address" type="text" class="span3" >
-	        <label>公司名称:</label>  <input id="v_company" type="text" class="span3" >
-	        <label>联系电话:</label>  <input id="v_phone" type="text" class="span3" >
-	        <input type="button" value="保存" class="btn" style="position:relative;right:-200px;" onclick="saveProjectInfo()" />
-        </form>
-    </div>
-    
-</div>
-</div>
+<body style="background-color: #fafafa">
+	<div class="filtrate-wrapper">
+		<div class="row clearfix">
+			<form role="form" class="select-box border-bottom-style"
+				style="align: left;">
+				<table id="data_1">
+					<tr>
+						<td class="control-label">设备名称：</td>
+						<td class="input-group date">
+							<div class="input-group" style="width: 300px">
+								<input type="text" class="form-control" id="equipment_id">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-white dropdown-toggle"
+										data-toggle="dropdown">
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
+								</div>
+							</div>
+						</td>
+						<td><input class="lf-btn blue-btn btn-primary" type="button"
+							id="dingshibtn" value="定时刷新开" onclick="timerOn(this)" /> <a
+							class="lf-btn blue-btn btn-primary" onclick="refreshNow()">马上刷新</a>
+						</td>
+					</tr>
+				</table>
+			</form>
+			<div class="col-md-6 column">
+				<div id="lidtmCreate">
+					<h4 style="align-content: center">实时数据</h4>
+				</div>
+				<table class="table table-striped table-bordered table-condensed">
+					<tr>
+						<td>数据时间：</td>
+						<td id="litime"></td>
+						<td>PM2.5：</td>
+						<td id="lip002"></td>
+					</tr>
+					<tr>
+						<td>PM10：</td>
+						<td id="lip003"></td>
+						<td>PM100：</td>
+						<td id="lip009"></td>
+					</tr>
+					<tr>
+						<td>温度：</td>
+						<td id="lip006"></td>
+						<td>湿度：</td>
+						<td id="lip007"></td>
+					</tr>
+					<tr>
+						<td>风向：</td>
+						<td id="lip005"></td>
+						<td>风速：</td>
+						<td id="lip011"></td>
+					</tr>
+					<tr>
+						<td>噪声：</td>
+						<td id="lip008"></td>
+						<td>气压：</td>
+						<td id="lip010"></td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-6 column">
+				<div id="projectInfo" class="form-inline">
+					<h4 style="align-content: center">工程信息</h4>
+				</div>
+				<table class="table table-striped table-bordered table-condensed">
+					<tr>
+						<td>项目地址：</td>
+						<td id="address"></td>
+					</tr>
+					<tr>
+						<td>公司名称：</td>
+						<td id="company"></td>
+					</tr>
+					<tr>
+						<td>联系电话：</td>
+						<td id="phone"></td>
+					</tr>
+				</table>
+				<div style="float: right;">
+					<span><button class="btn btn-info"
+							onclick="modifyProjectInfo();">修改</button></span>
+				</div>
+			</div>
+			<div class="col-md-12 column">
+				<div id="main" style="width: 100%; height: 400px;"></div>
+			</div>
+			<div class="col-md-4 column">
+				<div id="ymain1" style="width: 100%; height: 200px;"></div>
+			</div>
+			<div class="col-md-4 column">
+				<div id="ymain2" style="width: 100%; height: 200px;"></div>
+			</div>
+			<div class="col-md-4 column">
+				<div id="ymain3" style="width: 100%; height: 200px;"></div>
+			</div>
+
+			<div class="modify-win"
+				style="display: none; width: 300px; height: auto; position: fixed; margin: auto; left: 0px; right: 0px; background-color: #f0f0f0">
+				<img src="img/gis/close.jpg"
+					style="z-index: 999; width: 25px; height: 25px; line-height: 25px; text-align: center; position: absolute; top: 2px; right: 2px; color: rgb(111, 111, 110); font-size: 16px; cursor: pointer;"
+					onclick="hideModifyWin();"></img>
+				<div class="item-row-name item-row-txt-name">
+					<h4 style="align-content: center">录入工程信息</h4>
+				</div>
+				<form class="well">
+					<label>项目地址:</label> <input id="v_address" type="text"
+						class="span3"> <label>公司名称:</label> <input id="v_company"
+						type="text" class="span3"> <label>联系电话:</label> <input
+						id="v_phone" type="text" class="span3"> <input
+						type="button" value="保存" class="btn"
+						style="position: relative; right: -200px;"
+						onclick="saveProjectInfo()" />
+				</form>
+			</div>
+		</div>
+	</div>
 </body>
 <#include "/public_js.ftl" >
 <script src="js/plugins/echarts/echarts.min.js"></script>
@@ -156,7 +208,7 @@ function refreshNow() {
 	                }
                 }
                 
-                loadBarChart(objdata,datezu,data25zu,data10zu,data100zu)
+                loadBarChart(objdata,datezu.slice(0,5),data25zu.slice(0,5),data10zu.slice(0,5),data100zu.slice(0,5))
                 loadPieChart(objdata)
                 loadEquipmentInfo(objdata);
             }else{
@@ -198,165 +250,87 @@ $(function ($) {
         }).on('onUnsetSelectValue', function () {
             console.log("onUnsetSelectValue");
         });
-        // 基于准备好的dom，初始化柱状图echarts实例
-        var myChart2 = echarts.init(document.getElementById('main'));
-        option = {
-            title : {
-                text: '设备环境指标数据图'
-                , subtext: '请选择设备'
-            },
-            tooltip : {
-                trigger: 'axis'
-            },
-            legend: {
-                data:['PM2.5','PM10','PM100']
-            },
-            toolbox: {
-                show : true,
-                feature : {
-                    dataView : {show: true, readOnly: false},
-                    magicType : {show: true, type: ['line', 'bar']},
-                    restore : {show: true},
-                    saveAsImage : {show: true}
-                }
-            },
-            calculable : true,
-            xAxis : [
-                {
-                    type : 'category',
-                    data : ['设备1','设备2','设备3','设备4','设备5']
-                }
-            ],
-            yAxis : [
-                {
-                    type : 'value'
-                }
-            ],
-            series : [
-                {
-                    name:'PM2.5',
-                    type:'bar',
-                    radius: '100%',
-                    data:[0, 0, 0, 0, 0],
-                    markPoint : {
-                        data : [
-                            {type : 'max', name: '最大值'},
-                            {type : 'min', name: '最小值'}
-                        ]
-                    },
-                    markLine : {
-                        data : [
-                            {yAxis: '40', label:{normal:{show:true}}, name: 'PM2.5污染极限'}
-                        ]
-                    }
-                },
-                {
-                    name:'PM10',
-                    type:'bar',
-                    data:[0, 0, 0, 0, 0,],
-                    markPoint : {
-                        data : [
-                            {type : 'max', name: '最大值'},
-                            {type : 'min', name: '最小值'}
-                        ]
-                    },
-                    markLine : {
-                        data : [
-                            {yAxis: '60', label:{normal:{show:true}}, name: 'PM10污染极限'}
-                        ]
-                    }
-                },
-                {
-                    name:'PM100',
-                    type:'bar',
-                    data:[0, 0, 0, 0, 0],
-                    markPoint : {
-                        data : [
-                            {name : '最高', value : 0, xAxis: 0, yAxis: 0},
-                            {name : '最低', value : 0, xAxis:0, yAxis: 0}
-                        ]
-                    },
-                    markLine : {
-                        data : [
-                            {yAxis: '50', label:{normal:{show:true}}, name: 'PM100污染极限'}
-                        ]
-                    }
-                }
-            ]
-        };
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart2.setOption(option);
-//仪表1
-        var  optiony1 = {
-            tooltip : {
-                formatter: "{a} <br/>{b} : {c}"
-            },
-//            toolbox: {
-//                feature: {
-//                    restore: {},
-//                    saveAsImage: {}
-//                }
-//            },
-            series: [
-                {
-                    name: '请选择设备',
-                    type: 'gauge',
-                    max: 150,
-                    radius: '100%',
-                    detail: {formatter:'{value}'},
-                    axisLine: {            // 坐标轴线
-                        lineStyle: {       // 属性lineStyle控制线条样式
-                            color: [[0.3, '#91c7af'],[0.6, '#62879f'],[1, '#c33430']],
-                            //width: 2,
-                            shadowColor : '#fff', //默认透明
-                            shadowBlur: 10
-                        }
-                    },
-                    data: [{value: 0, name: '噪音'}]
-                }
-            ]
-        };
-        var ymain1 = echarts.init(document.getElementById('ymain1'));
-        ymain1.setOption(optiony1);
 });
 /**
  * 加载饼图数据
  */
 function loadPieChart(objdate){
-//仪表1
+	//仪表1
     var  optiony1 = {
         tooltip : {
             formatter: "{a} <br/>{b} : {c}"
         },
-//            toolbox: {
-//                feature: {
-//                    restore: {},
-//                    saveAsImage: {}
-//                }
-//            },
         series: [
             {
                 name:  "设备名称:"+objdate.vEquipmentName+" "+new Date(objdate.dtmCreate).format("yyyy-MM-dd hh-mm-ss"),
                 type: 'gauge',
-                max: 150,
+                max: 1000,
                 radius: '90%',
                 detail: {formatter:'{value}'},
                 axisLine: {            // 坐标轴线
                     lineStyle: {       // 属性lineStyle控制线条样式
                         color: [[0.3, '#91c7af'],[0.6, '#62879f'],[1, '#c33430']],
-                        //width: 2,
                         shadowColor : '#fff', //默认透明
                         shadowBlur: 10
                     }
                 },
-                data: [{value: objdate.p008, name: '噪音'}]
+                data: [{value: objdate.p002, name: 'PM2.5'}]
             }
         ]
+    };
+    var  optiony2 = {
+            tooltip : {
+                formatter: "{a} <br/>{b} : {c}"
+            },
+            series: [
+                {
+                    name:  "设备名称:"+objdate.vEquipmentName+" "+new Date(objdate.dtmCreate).format("yyyy-MM-dd hh-mm-ss"),
+                    type: 'gauge',
+                    max: 1000,
+                    radius: '90%',
+                    detail: {formatter:'{value}'},
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: [[0.3, '#91c7af'],[0.6, '#62879f'],[1, '#c33430']],
+                            shadowColor : '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    data: [{value: objdate.p003, name: 'PM10'}]
+                }
+            ]
+        };
+    var  optiony3 = {
+            tooltip : {
+                formatter: "{a} <br/>{b} : {c}"
+            },
+            series: [
+                {
+                    name:  "设备名称:"+objdate.vEquipmentName+" "+new Date(objdate.dtmCreate).format("yyyy-MM-dd hh-mm-ss"),
+                    type: 'gauge',
+                    max: 150,
+                    radius: '90%',
+                    detail: {formatter:'{value}'},
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: [[0.3, '#91c7af'],[0.6, '#62879f'],[1, '#c33430']],
+                            shadowColor : '#fff', //默认透明
+                            shadowBlur: 10
+                        }
+                    },
+                    data: [{value: objdate.p008, name: '噪音'}]
+                }
+            ]
     };
     var ymain1 = echarts.init(document.getElementById('ymain1'));
     ymain1.clear();
     ymain1.setOption(optiony1);
+    var ymain2 = echarts.init(document.getElementById('ymain2'));
+    ymain2.clear();
+    ymain2.setOption(optiony2);
+    var ymain3 = echarts.init(document.getElementById('ymain3'));
+    ymain3.clear();
+    ymain3.setOption(optiony3);
 }
 /**
  * 加载设备及工地信息
@@ -395,14 +369,11 @@ function loadBarChart(objdate,datezu,data25zu,data10zu,data100zu) {
             data:['PM2.5','PM10','PM100']
         },
         tooltip : {//鼠标悬浮弹窗提示
-            /*  trigger: 'axis' */
             trigger : 'item',
             show:true,
             showDelay: 0,
             hideDelay: 0,
             transitionDuration:0,
-      //      backgroundColor : 'rgba(255,0,255,0.7)',
-    //        borderColor : '#f50',
             borderRadius : 8,
             borderWidth: 2,
             padding: 10,    // [5, 10, 15, 20]
@@ -488,7 +459,6 @@ function loadBarChart(objdate,datezu,data25zu,data10zu,data100zu) {
             }
         ]
     };
-
     // 使用刚指定的配置项和数据显示图表。
     myChart2.setOption(option);
 }

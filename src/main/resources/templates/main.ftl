@@ -26,13 +26,10 @@
             </div>
             <div class="sidebar-collapse">
                 <ul class="nav" id="side-menu">
-                  <li class="nav-header">
-                      <div class="dropdown profile-element">
-                      </div>
-                  </li>
-                  <li>
-                      <a class="J_menuItem" href="baidumap/line.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备轨迹地图</span></a>
-                  </li>
+                    <li class="nav-header">
+                        <div><h3><strong>在线扬尘检测系统</strong></h3></div>
+                        <div class="logo-element">环保</div>
+                    </li>
                   <li>
                 	  <a class="J_menuItem" href="workbench/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color:#cdd6ec;">工作台</span></a>
                   </li>
@@ -41,6 +38,12 @@
                   </li>
                   <li>
                       <a class="J_menuItem" href="eqdateselect/index.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备历史数据</span></a>
+                  </li>
+                  <li>
+                      <a class="J_menuItem" href="baidumap/line.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备轨迹地图</span></a>
+                  </li>
+                  <li>
+                      <a class="J_menuItem" href="workbench/add.htm"><i class="fa fa-columns"></i> <span class="nav-label" style="color: #cdd6ec;">设备添加工作台</span></a>
                   </li>
                 </ul>
             </div>
@@ -57,7 +60,7 @@
                 </button>
                 <nav class="page-tabs J_menuTabs">
                     <div class="page-tabs-content">
-                        <a href="javascript:;" class="active J_menuTab" data-id="baidumap/line.htm">设备轨迹地图</a>
+                        <a href="javascript:;" class="active J_menuTab" data-id="baidumap/line.htm">轨迹图</a>
                     </div>
                 </nav>
                 <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>

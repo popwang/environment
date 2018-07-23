@@ -121,5 +121,16 @@ public class Index extends BaseTOAction {
 		mv.addAllObjects(map);
 		return mv;
 	}
+	
+	@RequestMapping("/workbench/add.htm")
+	@ApiOperation(value = "进入设备添加工作台")
+	public ModelAndView add(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/workbench/add");
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("basepath", this.getBasepath());
+		mv.addAllObjects(map);
+		return mv;
+	}
 
 }

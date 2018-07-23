@@ -64,7 +64,11 @@ function closeSetTimeWin(){
 }
 
 function saveSetTimeData() {
-	var result = "", machine = "#motor";
+	var result = "";
+	var machine = "#motor";
+	var name = getEquipmentName();
+	var status = "";//定时开关状态
+	var sets = "";//定时设置
 	for (var i = 1; i <= 10; i++) {
 		if ($(machine + i).bootstrapSwitch("state")) {
 			result += "1";
@@ -72,6 +76,34 @@ function saveSetTimeData() {
 			result += "0";
 		}
 	}
+	status = $("#timeswitch").val();
+	sets += $("#timestart").val() + ",";
+	sets += $("#timeend").val() + ",";
+	sets += $("#timeduration").val() + ",";
+	sets += $("#timerun").val() + ",";
+	sets += result
+	
+	$.ajax({
+		url:"/wp/command",
+		cache:false,
+		async:true,
+		dataType:'json',
+		type:'post',
+		data:{
+			command:'SETTIME',
+			name:name,
+			status:status,
+			sets:sets
+		},
+		success:function(result,status,jqXHR){
+			layer.msg('指令保存成功，5分钟左右生效!');
+			closeOffonWin();
+		},
+		error:function(result,status,jqXHR){
+			layer.msg('内部错误，请联系管理员!');
+			closeOffonWin();
+		}
+	});
 	closeSetTimeWin();
 }
 /**

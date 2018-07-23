@@ -236,7 +236,6 @@ div.warpper>div.data-container>div.bottom-lay>div.item-row>span.item-row-unit
 	display: block;
 	background-color: #FFFFFF;
 }
-
 .iw_poi_title {
 	color: #CC5522;
 	font-size: 14px;
@@ -252,4 +251,5 @@ div.warpper>div.data-container>div.bottom-lay>div.item-row>span.item-row-unit
 	padding-top: 4px;
 	white-space: -moz-pre-wrap;
 	word-wrap: break-word
+
 }
